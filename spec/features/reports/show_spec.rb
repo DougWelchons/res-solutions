@@ -56,6 +56,15 @@ RSpec.describe "Reports show page" do
           expect(page).to have_link("Interviews")
         end
       end
+
+      it "has a log-out button"
+      it "logs out the user when the log-out button is clicked"
+    end
+  end
+
+  describe "Sad Path" do
+    describe "when a loged out user visits the report show page it" do
+      it "redirects to the login page"
     end
   end
 end
