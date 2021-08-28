@@ -11,4 +11,8 @@ RSpec.describe Report, type: :model do
       expect(report.open?).to eq(true)
     end
   end
+
+  describe "Instance Methods" do
+    it "automatically creates report sections"
+  end
 end

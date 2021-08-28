@@ -13,7 +13,7 @@ RSpec.describe "Reports index page" do
   end
 
   describe "Happy Path" do
-    describe "when a loged in user visits the reports index page it" do
+    describe "when a logged in user visits the reports index page it" do
       it "shows all of the current reports" do
         visit reports_path
 
@@ -51,6 +51,7 @@ RSpec.describe "Reports index page" do
       it "has a log-out button"
       it "logs out the user when the log-out button is clicked"
       it "has a link to create a new report"
+      it "redirects the user to the report new page when the link is cliked"
     end
   end
 
