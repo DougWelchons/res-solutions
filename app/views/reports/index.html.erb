@@ -1,0 +1,16 @@
+<div class='header'>
+</div>
+
+<div class='reports'>
+  <div class='open'>
+    <% @reports[:open].each do |report| %>
+      <%= link_to "#{report.name} #{report.company} #{report.id} ", report_path(report) %>
+    <% end %>
+  </div>
+
+  <div class='closed'>
+    <% @reports[:closed].each do |report| %>
+      <%= link_to "#{report.name} #{report.company} #{report.id} ", report_path(report) %>
+    <% end %>
+  </div>
+</div>
