@@ -1,7 +1,7 @@
 class ReportsController < ApplicationController
 
   def index
-    @reports = {open: Report.open, closed: Report.closed}
+    @reports = {open: Report.not_closed, closed: Report.closed}
   end
 
   def show

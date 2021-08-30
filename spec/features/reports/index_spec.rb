@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe "Reports index page" do
   before :each do
     @report1 = Report.create(name: "Report 1", company: "Sample Company")
-    @report2 = Report.create(name: "Report 2", company: "Sample Company", status: 1)
+    @report2 = Report.create(name: "Report 2", company: "Sample Company", status: 5)
     @report3 = Report.create(name: "Report 3", company: "Sample Company")
     @report4 = Report.create(name: "Report 4", company: "Sample Company")
-    @report5 = Report.create(name: "Report 5", company: "Sample Company", status: 1)
-    @report6 = Report.create(name: "Report 6", company: "Sample Company", status: 1)
-    @report7 = Report.create(name: "Report 7", company: "Sample Company", status: 1)
+    @report5 = Report.create(name: "Report 5", company: "Sample Company", status: 5)
+    @report6 = Report.create(name: "Report 6", company: "Sample Company", status: 5)
+    @report7 = Report.create(name: "Report 7", company: "Sample Company", status: 5)
     @report8 = Report.create(name: "Report 8", company: "Sample Company")
   end
 
