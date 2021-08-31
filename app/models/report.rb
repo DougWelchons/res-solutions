@@ -1,5 +1,10 @@
 class Report < ApplicationRecord
 # after_create :build_report_sections
+
+  has_many :sections
+  has_many :sub_sections, through: :sections
+  has_many :parts, through: :sub_sections
+
   validates :name, presence: true, uniqueness:true
   validates :company, presence: true
 

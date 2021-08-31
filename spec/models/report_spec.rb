@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Report, type: :model do
+  describe "relationships" do
+    it { should have_many(:sections) }
+    it { should have_many(:sub_sections).through(:sections) }
+    it { should have_many(:parts).through(:sub_sections) }
+  end
+
   describe "validations" do
     it { should validate_presence_of :name}
     it { should validate_uniqueness_of :name}
