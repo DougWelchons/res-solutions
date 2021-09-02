@@ -4,11 +4,18 @@ after_create :build_report_sections
   has_many :sections
   has_many :sub_sections, through: :sections
   has_many :parts, through: :sub_sections
+  has_many :related_pt1s, through: :parts
+  has_many :related_pt2s, through: :parts
+  has_many :related_pt3s, through: :parts
 
   validates :name, presence: true, uniqueness:true
   validates :company, presence: true
 
   enum status: [:prep, :kick_off, :document_review, :field_review, :reporting, :closed]
+
+  # def all_related_parts
+  #   (related_pt1s + related_pt2s + related_pt3s).uniq.count
+  # end
 
   def build_report_sections
     #  has no associated pt1
@@ -271,5 +278,6 @@ after_create :build_report_sections
     structure.each do |section|
       Section.build(section, id)
     end
+    # require "pry"; binding.pry
   end
 end

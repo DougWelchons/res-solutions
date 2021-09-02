@@ -3,12 +3,14 @@ class Part < ApplicationRecord
   belongs_to :sub_section
   has_one :section, through: :sub_section
   has_one :report, through: :section
+  has_one :related_pt1, class_name: 'RelatedPart', foreign_key: 'pt1_id'
+  has_one :related_pt2, class_name: 'RelatedPart', foreign_key: 'pt2_id'
+  has_one :related_pt3, class_name: 'RelatedPart', foreign_key: 'pt3_id'
+  # has_one :pt1, through: :related_part
+  # has_one :pt2, through: :related_part
+  # has_one :pt3, through: :related_part
 
   validates :section_number, presence: true, uniqueness: { scope: :sub_section_id }
-
-  # def self.build(part_hash, subsection)
-  #   require "pry"; binding.pry
-  # end
 
   def self.build(part_hash, subsection)
     build_parts(part_hash[:p100], subsection, "100")

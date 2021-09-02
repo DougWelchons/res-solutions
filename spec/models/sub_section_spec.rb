@@ -5,6 +5,10 @@ RSpec.describe SubSection, type: :model do
     it { should belong_to(:section) }
     it { should have_one(:report).through(:section) }
     it { should have_many(:parts) }
+    # it { should have_many(:related_parts).through(:parts) }
+    it { should have_many(:related_pt1s).through(:parts) }
+    it { should have_many(:related_pt2s).through(:parts) }
+    it { should have_many(:related_pt3s).through(:parts) }
   end
 
   describe "validations" do
