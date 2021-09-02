@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Part, type: :model do
   describe "relationships" do
-    it { should belong_to(:user) }
     it { should belong_to(:sub_section) }
+    it { should have_one(:user) }
     it { should have_one(:section).through(:sub_section) }
     it { should have_one(:report).through(:section) }
   end
