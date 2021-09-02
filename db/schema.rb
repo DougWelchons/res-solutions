@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_30_202817) do
+ActiveRecord::Schema.define(version: 2021_08_31_235752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 2021_08_30_202817) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["sub_section_id"], name: "index_parts_on_sub_section_id"
     t.index ["user_id"], name: "index_parts_on_user_id"
+  end
+
+  create_table "related_parts", force: :cascade do |t|
+    t.bigint "pt1_id"
+    t.bigint "pt2_id"
+    t.bigint "pt3_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pt1_id"], name: "index_related_parts_on_pt1_id"
+    t.index ["pt2_id"], name: "index_related_parts_on_pt2_id"
+    t.index ["pt3_id"], name: "index_related_parts_on_pt3_id"
   end
 
   create_table "reports", force: :cascade do |t|
@@ -64,6 +75,9 @@ ActiveRecord::Schema.define(version: 2021_08_30_202817) do
 
   add_foreign_key "parts", "sub_sections"
   add_foreign_key "parts", "users"
+  add_foreign_key "related_parts", "parts", column: "pt1_id"
+  add_foreign_key "related_parts", "parts", column: "pt2_id"
+  add_foreign_key "related_parts", "parts", column: "pt3_id"
   add_foreign_key "sections", "reports"
   add_foreign_key "sub_sections", "sections"
 end

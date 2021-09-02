@@ -1,0 +1,5 @@
+<div class="report_sections">
+  <% @report.sections.each do |section| %>
+    <%= link_to "#{section.name}", section_path(section) %>
+  <% end %>
+</div>

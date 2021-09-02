@@ -6,8 +6,8 @@ RSpec.describe "Reports show page" do
   end
 
   describe "Happy Path" do
-    xdescribe "when a logged in user visits the report show page it" do
-      it "has a button to 'close' the report" do
+    describe "when a logged in user visits the report show page it" do
+      xit "has a button to 'close' the report" do
         visit report_path(@report)
 
         expect(page).to have_button("Close Report")
@@ -25,7 +25,7 @@ RSpec.describe "Reports show page" do
         end
       end
 
-      it "has a link to the additional documents page" do
+      xit "has a link to the additional documents page" do
         visit report_path(@report)
 
         within(".additional_info") do
@@ -33,7 +33,7 @@ RSpec.describe "Reports show page" do
         end
       end
 
-      it "has a link to the Field Reviews page" do
+      xit "has a link to the Field Reviews page" do
         visit report_path(@report)
 
         within(".additional_info") do
@@ -41,7 +41,7 @@ RSpec.describe "Reports show page" do
         end
       end
 
-      it "has a link to the Interview Questions page" do
+      xit "has a link to the Interview Questions page" do
         visit report_path(@report)
 
         within(".additional_info") do
@@ -49,7 +49,7 @@ RSpec.describe "Reports show page" do
         end
       end
 
-      it "has a link to the Interviews page" do
+      xit "has a link to the Interviews page" do
         visit report_path(@report)
 
         within(".additional_info") do
