@@ -11,9 +11,9 @@ RSpec.describe Report, type: :model do
   end
 
   describe "validations" do
-    it { should validate_presence_of :name}
-    it { should validate_uniqueness_of :name}
-    it { should validate_presence_of :company}
+    it { should validate_presence_of(:name) }
+    it { should validate_uniqueness_of(:name) }
+    it { should validate_presence_of(:company) }
     it { should define_enum_for(:status).with_values([:prep, :kick_off, :document_review, :field_review, :reporting, :closed]) }
 
     it "should set the status to prep by default" do

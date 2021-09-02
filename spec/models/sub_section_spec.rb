@@ -5,7 +5,6 @@ RSpec.describe SubSection, type: :model do
     it { should belong_to(:section) }
     it { should have_one(:report).through(:section) }
     it { should have_many(:parts) }
-    # it { should have_many(:related_parts).through(:parts) }
     it { should have_many(:related_pt1s).through(:parts) }
     it { should have_many(:related_pt2s).through(:parts) }
     it { should have_many(:related_pt3s).through(:parts) }
@@ -13,9 +12,7 @@ RSpec.describe SubSection, type: :model do
 
   describe "validations" do
     it { should validate_presence_of(:name) }
-    # it { should validate_uniqueness_of(:name).scoped_to(:section_id) }
     it { should validate_presence_of(:section_number) }
-    # it { should validate_uniqueness_of(:section_number).scoped_to(:section_id) }
   end
 
   describe "Instance Methods" do

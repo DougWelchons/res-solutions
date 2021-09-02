@@ -6,9 +6,6 @@ class Part < ApplicationRecord
   has_one :related_pt1, class_name: 'RelatedPart', foreign_key: 'pt1_id'
   has_one :related_pt2, class_name: 'RelatedPart', foreign_key: 'pt2_id'
   has_one :related_pt3, class_name: 'RelatedPart', foreign_key: 'pt3_id'
-  # has_one :pt1, through: :related_part
-  # has_one :pt2, through: :related_part
-  # has_one :pt3, through: :related_part
 
   validates :section_number, presence: true, uniqueness: { scope: :sub_section_id }
 
