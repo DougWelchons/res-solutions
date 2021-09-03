@@ -236,7 +236,7 @@ after_create :build_report_sections
             p102: {pt1: 3, pt2: [1, 2], pt3: [2]}
           }},
           {number: "5.8", name: "OZONE DEPLETION", parts: {
-            p100: {pt1: 0, pt2: [], pt3: []},
+            p100: {pt1: 2, pt2: [1], pt3: [1]},
             p101: {pt1: 0, pt2: [], pt3: []},
             p102: {pt1: 0, pt2: [], pt3: []}
           }},

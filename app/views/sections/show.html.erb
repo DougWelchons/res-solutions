@@ -1,0 +1,99 @@
+<style>
+.part {
+  width: 33%;
+}
+.table {
+  width: 95%;
+  border: 50px;
+  border-color: black;
+}
+
+</style>
+
+<h1 class="section_title">
+  <%= "#{@section.name}" %>
+</h1>
+
+<div class="sub_sections">
+  <% @section.sub_sections.each do |sub_section| %>
+    <div id="sub_section_<%= sub_section.id %>">
+      <h2><%= "#{sub_section.section_number} #{sub_section.name}" %></h2>
+
+      <table class="table">
+        <tr>
+          <th>PT1</th>
+          <th>PT2</th>
+          <th>PT3</th>
+        </tr>
+        <% sub_section.all_related_parts.each do |rp| %>
+          <tr>
+            <div id="related_part_<%= rp.id %>">
+              <td class="part">
+                <div>
+                  <% unless rp.pt1_id.nil? %>
+                    <% pt1 = Part.find(rp.pt1_id) %>
+                    <h5>Section: <%= pt1.section_number %></h5>
+                    <p>Assessor: <br>
+                      Final Assessment: <%= pt1.final_assessment %><br>
+                      Score: <%= pt1.score %><br><br>
+                      First Assessment: <%= pt1.first_assessment %><p>
+                      <div>
+                        <p>
+                          Additional Documents: <br>
+                          Interview Questions: <br>
+                          Field Review Questions: <br>
+                          Notes: <br>
+                        </p>
+                      </div>
+                  <% end %>
+                </div>
+              </td>
+
+              <td class="part">
+                <div>
+                  <% unless rp.pt2_id.nil? %>
+                    <% pt2 = Part.find(rp.pt2_id) %>
+                    <h5>Section: <%= pt2.section_number %></h5>
+                    <p>Assessor: <br>
+                      Final Assessment: <%= pt2.final_assessment %><br>
+                      Score: <%= pt2.score %><br><br>
+                      First Assessment: <%= pt2.first_assessment %><p>
+                      <div>
+                        <p>
+                          Additional Documents: <br>
+                          Interview Questions: <br>
+                          Field Review Questions: <br>
+                          Notes: <br>
+                        </p>
+                      </div>
+                  <% end %>
+                </div>
+              </td>
+
+              <td class="part">
+                <div>
+                  <% unless rp.pt3_id.nil? %>
+                    <% pt3 = Part.find(rp.pt3_id) %>
+                    <h5>Section: <%= pt3.section_number %></h5>
+                    <p>Assessor: <br>
+                      Final Assessment: <%= pt3.final_assessment %><br>
+                      Score: <%= pt3.score %><br><br>
+                      First Assessment: <%= pt3.first_assessment %><p>
+                      <div>
+                        <p>
+                          Additional Documents: <br>
+                          Interview Questions: <br>
+                          Field Review Questions: <br>
+                          Notes: <br>
+                        </p>
+                      </div>
+                  <% end %>
+                </div>
+              </td>
+            </div>
+          </tr>
+        <% end%>
+      </table>
+    </div>
+  <% end %>
+</div>
