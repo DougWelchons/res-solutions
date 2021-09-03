@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_31_235752) do
+ActiveRecord::Schema.define(version: 2021_09_02_224406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "parts", force: :cascade do |t|
     t.string "section_number"
-    t.string "first_assesment"
     t.string "final_assessment"
     t.float "score"
     t.bigint "sub_section_id", null: false
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "first_assessment"
     t.index ["sub_section_id"], name: "index_parts_on_sub_section_id"
     t.index ["user_id"], name: "index_parts_on_user_id"
   end
