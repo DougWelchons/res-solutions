@@ -20,7 +20,6 @@ RSpec.describe "section show page" do
         @section.sub_sections.each do |sub_section|
           expect(page).to have_content("#{sub_section.section_number} #{sub_section.name}")
         end
-        save_and_open_page
       end
     end
   end
