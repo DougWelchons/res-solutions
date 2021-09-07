@@ -1,0 +1,14 @@
+<div class="first_assessment">
+  <p>
+    First assessment:<br>
+    <%= @part.first_assessment %>
+  </p>
+</div>
+
+<%= form_with url: "/parts/#{@part.id}/final", method: :put, local: true do |form| %>
+  <%= form.label :final_assessment %>
+  <%= form.text_field :final_assessment %><br>
+  <%= form.label :score %>
+  <%= form.number_field :score %><br>
+  <%= form.submit "Save assessment" %>
+<% end %>
