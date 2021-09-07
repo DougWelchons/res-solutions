@@ -28,71 +28,38 @@
         <% sub_section.all_related_parts.each do |rp| %>
           <tr>
             <div id="related_part_<%= rp.id %>">
-              <td class="part">
-                <div>
-                  <% unless rp.pt1_id.nil? %>
-                    <% pt1 = Part.find(rp.pt1_id) %>
-                    <h5>Section: <%= pt1.section_number %></h5>
-                    <p>Assessor: <br>
-                      Final Assessment: <%= pt1.final_assessment %><br>
-                      Score: <%= pt1.score %><br><br>
-                      First Assessment: <%= pt1.first_assessment %><p>
-                      <div>
-                        <p>
-                          Additional Documents: <br>
-                          Interview Questions: <br>
-                          Field Review Questions: <br>
-                          Notes: <br>
+              <% [rp.pt1_id, rp.pt2_id, rp.pt3_id].each do |part_id| %>
+                <td class="part">
+                  <div>
+                    <% unless part_id.nil? %>
+                    <div id="part-<%=part_id%>">
+                        <% part = Part.find(part_id) %>
+                        <h5>Section: <%= part.section_number %></h5>
+                        <p>Assessor: <br>
+                          <div class="final_assessment">
+                            <%= button_to "Edit", final_edit_path(part), method: "get" %> Final Assessment: <%= part.final_assessment %><br>
+                            Score: <%= part.score %><br><br>
+                          </div>
+                          <div class="first_assessment">
+                            <%= button_to "Edit", first_edit_path(part), method: "get" %> First Assessment: <%= part.first_assessment %>
+                          </div>
                         </p>
+                        <div>
+                          <p>
+                            Additional Documents: <br>
+                            Interview Questions: <br>
+                            Field Review Questions: <br>
+                            Notes: <br>
+                          </p>
+                        </div>
                       </div>
-                  <% end %>
-                </div>
-              </td>
-
-              <td class="part">
-                <div>
-                  <% unless rp.pt2_id.nil? %>
-                    <% pt2 = Part.find(rp.pt2_id) %>
-                    <h5>Section: <%= pt2.section_number %></h5>
-                    <p>Assessor: <br>
-                      Final Assessment: <%= pt2.final_assessment %><br>
-                      Score: <%= pt2.score %><br><br>
-                      First Assessment: <%= pt2.first_assessment %><p>
-                      <div>
-                        <p>
-                          Additional Documents: <br>
-                          Interview Questions: <br>
-                          Field Review Questions: <br>
-                          Notes: <br>
-                        </p>
-                      </div>
-                  <% end %>
-                </div>
-              </td>
-
-              <td class="part">
-                <div>
-                  <% unless rp.pt3_id.nil? %>
-                    <% pt3 = Part.find(rp.pt3_id) %>
-                    <h5>Section: <%= pt3.section_number %></h5>
-                    <p>Assessor: <br>
-                      Final Assessment: <%= pt3.final_assessment %><br>
-                      Score: <%= pt3.score %><br><br>
-                      First Assessment: <%= pt3.first_assessment %><p>
-                      <div>
-                        <p>
-                          Additional Documents: <br>
-                          Interview Questions: <br>
-                          Field Review Questions: <br>
-                          Notes: <br>
-                        </p>
-                      </div>
-                  <% end %>
-                </div>
-              </td>
+                    <% end %>
+                  </div>
+                </td>
+              <% end %>
             </div>
           </tr>
-        <% end%>
+        <% end %>
       </table>
     </div>
   <% end %>
