@@ -1,0 +1,5 @@
+<%= form_with url: "/parts/#{@part.id}/first", method: :put, local: true do |form| %>
+  <%= form.label :first_assessment %>
+  <%= form.text_field :first_assessment %><br>
+  <%= form.submit "Save assessment" %>
+<% end %>

@@ -38,7 +38,7 @@ RSpec.describe "Part edit pages" do
     end
   end
 
-  xdescribe "first_edit page" do
+  describe "first_edit page" do
     before :each do
       @report = Report.create(name: "Report 1", company: "Sample Company")
       @section = @report.sections.first
@@ -55,7 +55,7 @@ RSpec.describe "Part edit pages" do
         end
 
         it "it redirects to the section show page with the updated info" do
-          visit ffirst_edit_path(@part)
+          visit first_edit_path(@part)
 
           fill_in :first_assessment, with: "This is the first assessment."
           click_button "Save assessment"
