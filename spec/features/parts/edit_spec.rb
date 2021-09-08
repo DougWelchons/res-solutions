@@ -11,6 +11,7 @@ RSpec.describe "Part edit pages" do
     describe "Happy Path" do
       describe "As a logged in user when i visit the page it" do
         it "has a field to add a final assessment" do
+          require "pry"; binding.pry
           visit final_edit_path(@part)
 
           expect(page).to have_field(:final_assessment)

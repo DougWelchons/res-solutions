@@ -57,7 +57,7 @@ RSpec.describe "section show page" do
 
       it "redirects to the final assessment edit page" do
         visit section_path(@section)
-save_and_open_page
+
         within "#part-#{@section.parts.first.id}" do
           within ".final_assessment" do
             click_button "Edit"
