@@ -1,0 +1,14 @@
+
+
+<div style="margin-left:auto;margin-right:auto;margin-top:100px;text-align:center"><div>Welcome!</div><br><%= button_to 'Login (not functioning)', '/auth/microsoft_graph', :class => "btn-lg btn" %><br><br><br>
+  temp simulated login enter one of the following user emails<br>
+  test1@sample.com<br>
+  test2@sample.com<br>
+  test3@sample.com<br>
+  test4@sample.com<br>
+
+  <%= form_with url: "/temp_session_route", method: :get, local: true do |form| %>
+    <%= form.text_field :email %>
+    <%= form.submit :login %>
+  <% end %>
+</div>
