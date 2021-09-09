@@ -10,7 +10,7 @@ RSpec.describe "Part edit pages" do
     end
 
     describe "Happy Path" do
-      describe "As a logged in user when i visit the page it" do
+      describe "As a logged in user when I visit the page it" do
         before :each do
           visit root_path
           fill_in :email, with: @user.email
