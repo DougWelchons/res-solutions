@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  before_action :current_user
 
   def index
     @reports = {open: Report.not_closed, closed: Report.closed}

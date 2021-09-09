@@ -3,10 +3,18 @@ require 'rails_helper'
 RSpec.describe "Reports show page" do
   before :each do
     @report = Report.create(name: "Report 1", company: "Sample Company")
+
+    @user = User.create!(name: "Name1", email: "email@domain.com")
   end
 
   describe "Happy Path" do
     describe "when a logged in user visits the report show page it" do
+      before :each do
+        visit root_path
+        fill_in :email, with: @user.email
+        click_button :login
+      end
+
       xit "has a button to 'close' the report" do
         visit report_path(@report)
 
@@ -57,14 +65,34 @@ RSpec.describe "Reports show page" do
         end
       end
 
-      it "has a log-out button"
-      it "logs out the user when the log-out button is clicked"
+      it "has a log-out button" do
+        visit report_path(@report)
+
+        expect(page).to have_button("Logout")
+      end
+
+      it "logs out the user when the log-out button is clicked" do
+        visit report_path(@report)
+
+        click_button "Logout"
+
+        expect(current_path).to eq(root_path)
+        expect(page).to have_content("You have been logged out.")
+
+        visit report_path(@report)
+        expect(current_path).to eq(root_path)
+        expect(page).to have_content("Sorry, your credentials are bad.")
+      end
     end
   end
 
   describe "Sad Path" do
     describe "when a loged out user visits the report show page it" do
-      it "redirects to the login page"
+      it "redirects to the login page" do
+        visit report_path(@report)
+        expect(current_path).to eq(root_path)
+        expect(page).to have_content("Sorry, your credentials are bad.")
+      end
     end
   end
 end

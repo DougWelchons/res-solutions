@@ -4,8 +4,13 @@
 }
 .table {
   width: 95%;
-  border: 50px;
-  border-color: black;
+  border: 3px black solid;
+  /* border-color: black; */
+}
+
+.cell {
+  border: 3px black solid;
+  /* border-color: black; */
 }
 
 </style>
@@ -20,26 +25,26 @@
       <h2><%= "#{sub_section.section_number} #{sub_section.name}" %></h2>
 
       <table class="table">
-        <tr>
-          <th>PT1</th>
-          <th>PT2</th>
-          <th>PT3</th>
+        <tr class="cell">
+          <th class="cell">PT1</th>
+          <th class="cell">PT2</th>
+          <th class="cell">PT3</th>
         </tr>
         <% sub_section.all_related_parts.each do |rp| %>
-          <tr>
+          <tr class="cell">
             <div id="related_part_<%= rp.id %>">
               <% [rp.pt1_id, rp.pt2_id, rp.pt3_id].each do |part_id| %>
-                <td class="part">
+                <td class="cell">
                   <div>
                     <% unless part_id.nil? %>
                     <div id="part-<%=part_id%>">
                         <% part = Part.find(part_id) %>
                         <h5>Section: <%= part.section_number %></h5>
                         <p>Assessor: <br>
-                          <div class="final_assessment">
+                          <span class="final_assessment">
                             <%= button_to "Edit", final_edit_path(part), method: "get" %> Final Assessment: <%= part.final_assessment %><br>
                             Score: <%= part.score %><br><br>
-                          </div>
+                          </span>
                           <div class="first_assessment">
                             <%= button_to "Edit", first_edit_path(part), method: "get" %> First Assessment: <%= part.first_assessment %>
                           </div>

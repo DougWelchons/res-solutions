@@ -14,6 +14,7 @@ after_create :build_report_sections
   enum status: [:prep, :kick_off, :document_review, :field_review, :reporting, :closed]
 
   def build_report_sections
+    
     #  has no associated pt1
       # PT2
         # 100.2.2.13

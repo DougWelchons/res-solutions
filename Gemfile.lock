@@ -148,8 +148,7 @@ GEM
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
       rack-protection
-    omniauth-microsoft-office365 (0.0.8)
-      omniauth
+    omniauth-microsoft_graph (0.2.1)
       omniauth-oauth2
     omniauth-oauth2 (1.7.1)
       oauth2 (~> 1.4)
@@ -300,7 +299,7 @@ DEPENDENCIES
   launchy
   listen (~> 3.3)
   omniauth
-  omniauth-microsoft-office365
+  omniauth-microsoft_graph
   orderly
   ostruct
   pg (~> 1.1)
