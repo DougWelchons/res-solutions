@@ -3,10 +3,18 @@ require 'rails_helper'
 RSpec.describe "Reports show page" do
   before :each do
     @report = Report.create(name: "Report 1", company: "Sample Company")
+
+    @user = User.create!(name: "Name1", email: "email@domain.com")
   end
 
   describe "Happy Path" do
     describe "when a logged in user visits the report show page it" do
+      before :each do
+        visit root_path
+        fill_in :email, with: @user.email
+        click_button :login
+      end
+
       xit "has a button to 'close' the report" do
         visit report_path(@report)
 

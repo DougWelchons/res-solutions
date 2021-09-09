@@ -1,5 +1,5 @@
 class PartsController < ApplicationController
-
+  before_action :current_user
   def first_edit
     @part = Part.find(params[:id])
   end
@@ -35,5 +35,14 @@ class PartsController < ApplicationController
 
   def part_params_final
     params.permit(:final_assessment, :score)
+  end
+
+  def current_user
+    @user = User.find(session[:user_id])
+
+    if @user.nil?
+      flash[:error] = "Sorry, your credentials are bad."
+      redirect_to root_path
+    end
   end
 end

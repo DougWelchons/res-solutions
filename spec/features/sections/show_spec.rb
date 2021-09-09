@@ -5,9 +5,16 @@ RSpec.describe "section show page" do
     before :each do
       @report = Report.create(name: "Report 1", company: "Sample Company")
       @section = @report.sections.first
+      @user = User.create!(name: "Name1", email: "email@domain.com")
     end
 
     describe "as a logged in user, when I visit the section show page it" do
+      before :each do
+        visit root_path
+        fill_in :email, with: @user.email
+        click_button :login
+      end
+
       it "shows the section name at the top of the page" do
         visit section_path(@section)
 

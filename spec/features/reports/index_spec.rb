@@ -5,10 +5,17 @@ RSpec.describe "Reports index page" do
     @report1 = Report.create!(name: "Report 1", company: "Sample Company")
     @report2 = Report.create!(name: "Report 2", company: "Sample Company", status: 5)
     @report3 = Report.create!(name: "Report 3", company: "Sample Company")
+    @user = User.create!(name: "Name1", email: "email@domain.com")
   end
 
   describe "Happy Path" do
     describe "when a logged in user visits the reports index page it" do
+      before :each do
+        visit root_path
+        fill_in :email, with: @user.email
+        click_button :login
+      end
+
       it "shows all of the current reports" do
         visit reports_path
 

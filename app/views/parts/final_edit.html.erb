@@ -6,6 +6,7 @@
 </div>
 
 <%= form_with url: "/parts/#{@part.id}/final", method: :put, local: true do |form| %>
+  <%= form.hidden_field :user_id, value: @user.id %>
   <%= form.label :final_assessment %>
   <%= form.text_field :final_assessment %><br>
   <%= form.label :score %>

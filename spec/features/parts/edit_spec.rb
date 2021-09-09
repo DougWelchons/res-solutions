@@ -6,12 +6,18 @@ RSpec.describe "Part edit pages" do
       @report = Report.create(name: "Report 1", company: "Sample Company")
       @section = @report.sections.first
       @part = @section.parts.first
+      @user = User.create!(name: "Name1", email: "email@domain.com")
     end
 
     describe "Happy Path" do
       describe "As a logged in user when i visit the page it" do
+        before :each do
+          visit root_path
+          fill_in :email, with: @user.email
+          click_button :login
+        end
+
         it "has a field to add a final assessment" do
-          require "pry"; binding.pry
           visit final_edit_path(@part)
 
           expect(page).to have_field(:final_assessment)
@@ -44,10 +50,17 @@ RSpec.describe "Part edit pages" do
       @report = Report.create(name: "Report 1", company: "Sample Company")
       @section = @report.sections.first
       @part = @section.parts.first
+      @user = User.create!(name: "Name1", email: "email@domain.com")
     end
 
     describe "Happy Path" do
       describe "As a logged in user when i visit the page it" do
+        before :each do
+          visit root_path
+          fill_in :email, with: @user.email
+          click_button :login
+        end
+
         it "has a field to add the first assessment" do
           visit first_edit_path(@part)
 
