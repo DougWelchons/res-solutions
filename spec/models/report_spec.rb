@@ -8,6 +8,7 @@ RSpec.describe Report, type: :model do
     it { should have_many(:related_pt1s).through(:parts) }
     it { should have_many(:related_pt2s).through(:parts) }
     it { should have_many(:related_pt3s).through(:parts) }
+    it { should have_many(:additional_documents).through(:parts) }
   end
 
   describe "validations" do

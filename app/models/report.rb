@@ -7,6 +7,8 @@ after_create :build_report_sections
   has_many :related_pt1s, through: :parts
   has_many :related_pt2s, through: :parts
   has_many :related_pt3s, through: :parts
+  has_many :additional_documents, through: :parts
+  
 
   validates :name, presence: true, uniqueness:true
   validates :company, presence: true
@@ -14,7 +16,7 @@ after_create :build_report_sections
   enum status: [:prep, :kick_off, :document_review, :field_review, :reporting, :closed]
 
   def build_report_sections
-    
+
     #  has no associated pt1
       # PT2
         # 100.2.2.13

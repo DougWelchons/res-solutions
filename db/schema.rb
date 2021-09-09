@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_02_224406) do
+ActiveRecord::Schema.define(version: 2021_09_09_200103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "additional_documents", force: :cascade do |t|
+    t.string "document"
+    t.string "notes"
+    t.bigint "user_id", null: false
+    t.bigint "part_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["part_id"], name: "index_additional_documents_on_part_id"
+    t.index ["user_id"], name: "index_additional_documents_on_user_id"
+  end
 
   create_table "parts", force: :cascade do |t|
     t.string "section_number"
@@ -73,6 +84,8 @@ ActiveRecord::Schema.define(version: 2021_09_02_224406) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "additional_documents", "parts"
+  add_foreign_key "additional_documents", "users"
   add_foreign_key "parts", "sub_sections"
   add_foreign_key "parts", "users"
   add_foreign_key "related_parts", "parts", column: "pt1_id"
