@@ -37,12 +37,12 @@ class PartsController < ApplicationController
     params.permit(:final_assessment, :score)
   end
 
-  def current_user
-    @user = User.find(session[:user_id])
-
-    if @user.nil?
-      flash[:error] = "Sorry, your credentials are bad."
-      redirect_to root_path
-    end
-  end
+  # def current_user
+  #   @user = User.find(session[:user_id])
+  #
+  #   if @user.nil?
+  #     flash[:error] = "Sorry, your credentials are bad."
+  #     redirect_to root_path
+  #   end
+  # end
 end

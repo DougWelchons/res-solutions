@@ -15,6 +15,10 @@
       <%= content_tag :div, msg, class: name %>
     <% end %>
 
+    <% unless @user.nil? %>
+      <%= button_to "Logout", logout_path, method: :delete %>
+      <% end %>
+
     <%= yield %>
   </body>
 </html>

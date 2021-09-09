@@ -44,16 +44,38 @@ RSpec.describe "Reports index page" do
         expect(current_path).to eq(report_path(@report1))
       end
 
-      it "has a log-out button"
-      it "logs out the user when the log-out button is clicked"
       it "has a link to create a new report"
+
       it "redirects the user to the report new page when the link is cliked"
+
+      it "has a log-out button" do
+        visit reports_path
+
+        expect(page).to have_button("Logout")
+      end
+
+      it "logs out the user when the log-out button is clicked" do
+        visit reports_path
+
+        click_button "Logout"
+
+        expect(current_path).to eq(root_path)
+        expect(page).to have_content("You have been logged out.")
+
+        visit reports_path
+        expect(current_path).to eq(root_path)
+        expect(page).to have_content("Sorry, your credentials are bad.")
+      end
     end
   end
 
   describe "Sad Path" do
     describe "when a loged out user visits the reports index page it" do
-      it "redirects to the login page"
+      it "redirects to the login page" do
+        visit reports_path
+        expect(current_path).to eq(root_path)
+        expect(page).to have_content("Sorry, your credentials are bad.")
+      end
     end
   end
 end

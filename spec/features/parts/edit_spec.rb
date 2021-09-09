@@ -41,6 +41,35 @@ RSpec.describe "Part edit pages" do
 
           expect(current_path).to eq(section_path(@section))
         end
+
+        it "has a log-out button" do
+          visit final_edit_path(@part)
+
+          expect(page).to have_button("Logout")
+        end
+
+        it "logs out the user when the log-out button is clicked" do
+          visit final_edit_path(@part)
+
+          click_button "Logout"
+
+          expect(current_path).to eq(root_path)
+          expect(page).to have_content("You have been logged out.")
+
+          visit final_edit_path(@part)
+          expect(current_path).to eq(root_path)
+          expect(page).to have_content("Sorry, your credentials are bad.")
+        end
+      end
+    end
+
+    describe "Sad Path" do
+      describe "when a loged out user visits the final edit page it" do
+        it "redirects to the login page" do
+          visit final_edit_path(@part)
+          expect(current_path).to eq(root_path)
+          expect(page).to have_content("Sorry, your credentials are bad.")
+        end
       end
     end
   end
@@ -75,6 +104,35 @@ RSpec.describe "Part edit pages" do
           click_button "Save assessment"
 
           expect(current_path).to eq(section_path(@section))
+        end
+
+        it "has a log-out button" do
+          visit first_edit_path(@part)
+
+          expect(page).to have_button("Logout")
+        end
+
+        it "logs out the user when the log-out button is clicked" do
+          visit first_edit_path(@part)
+
+          click_button "Logout"
+
+          expect(current_path).to eq(root_path)
+          expect(page).to have_content("You have been logged out.")
+
+          visit first_edit_path(@part)
+          expect(current_path).to eq(root_path)
+          expect(page).to have_content("Sorry, your credentials are bad.")
+        end
+      end
+    end
+
+    describe "Sad Path" do
+      describe "when a loged out user visits the first edit page it" do
+        it "redirects to the login page" do
+          visit first_edit_path(@part)
+          expect(current_path).to eq(root_path)
+          expect(page).to have_content("Sorry, your credentials are bad.")
         end
       end
     end

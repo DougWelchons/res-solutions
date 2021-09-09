@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe "section show page" do
-  describe "Happy Path" do
-    before :each do
-      @report = Report.create(name: "Report 1", company: "Sample Company")
-      @section = @report.sections.first
-      @user = User.create!(name: "Name1", email: "email@domain.com")
-    end
+  before :each do
+    @report = Report.create(name: "Report 1", company: "Sample Company")
+    @section = @report.sections.first
+    @user = User.create!(name: "Name1", email: "email@domain.com")
+  end
 
+  describe "Happy Path" do
     describe "as a logged in user, when I visit the section show page it" do
       before :each do
         visit root_path
@@ -72,6 +72,35 @@ RSpec.describe "section show page" do
         end
 
         expect(current_path).to eq(final_edit_path(@section.parts.first))
+      end
+
+      it "has a log-out button" do
+        visit section_path(@section)
+
+        expect(page).to have_button("Logout")
+      end
+
+      it "logs out the user when the log-out button is clicked" do
+        visit section_path(@section)
+
+        click_button "Logout"
+
+        expect(current_path).to eq(root_path)
+        expect(page).to have_content("You have been logged out.")
+
+        visit section_path(@section)
+        expect(current_path).to eq(root_path)
+        expect(page).to have_content("Sorry, your credentials are bad.")
+      end
+    end
+  end
+
+  describe "Sad Path" do
+    describe "when a loged out user visits the section show page it" do
+      it "redirects to the login page" do
+        visit section_path(@section)
+        expect(current_path).to eq(root_path)
+        expect(page).to have_content("Sorry, your credentials are bad.")
       end
     end
   end
