@@ -1,8 +1,9 @@
 class AdditionalDocumentsController < ApplicationController
   before_action :current_user
+  before_action :find_part, only: [:new, :create, :edit, :update]
 
   def new
-    @part = Part.find(params[:part_id])
+    # @part = Part.find(params[:part_id])
   end
 
   def create
@@ -15,9 +16,27 @@ class AdditionalDocumentsController < ApplicationController
     end
   end
 
+  def edit
+    # @part = Part.find(params[:part_id])
+  end
+
+  def update
+    # add_doc = @user.additional_documents.new(add_docs_params)
+
+    # if add_doc.save!
+    #   redirect_to section_path(add_doc.section)
+    # else
+    #   redirect_to new_part_additional_document_path(params[:part_id])
+    # end
+  end
+
   private
 
   def add_docs_params
     params.permit(:document, :notes, :part_id)
+  end
+
+  def find_part
+    @part = Part.find(params[:part_id])
   end
 end

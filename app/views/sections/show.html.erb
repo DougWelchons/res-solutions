@@ -51,10 +51,26 @@
                         </p>
                         <div>
                           <p>
-                            Additional Documents: <br>
-                            Interview Questions: <br>
-                            Field Review Questions: <br>
-                            Notes: <br>
+                            <div class="add_docs">
+                              <%= button_to "Add", new_part_additional_document_path(part), method: :get %>
+                              Additional Documents:
+                              <% part.additional_documents.each do |document| %>
+                                <div id="add_doc-<%=document.id%>">
+                                  <%= button_to "Edit", edit_part_additional_document_path(part, document), method: :get %> Document:
+                                  <%= document.document %> <br>
+                                  Notes: <%= document.notes %>
+                                </div>
+                              <% end %>
+                            </div>
+                            <div class="interview_questions">
+                              Interview Questions:
+                            </div>
+                            <div class="field_review">
+                              Field Review Questions:
+                            </div>
+                            <div class="notes">
+                              Notes:
+                            </div>
                           </p>
                         </div>
                       </div>
