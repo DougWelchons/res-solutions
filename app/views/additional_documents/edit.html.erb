@@ -1,0 +1,7 @@
+<%= form_with url: part_additional_document_path(@part), method: :put, local: true do |form| %>
+  <%= form.label "Document:" %>
+  <%= form.text_field :document, value: @additional_document.document, required: true %>
+  <%= form.label "Notes:" %>
+  <%= form.text_field :notes, value: @additional_document.notes %>
+  <%= form.submit "Update" %>
+<% end %>

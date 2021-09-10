@@ -1,30 +1,30 @@
 class PartsController < ApplicationController
   before_action :current_user
   def first_edit
-    @part = Part.find(params[:id])
+    @part = Part.find(params[:part_id])
   end
 
   def first_update
-    part = Part.find(params[:id])
+    part = Part.find(params[:part_id])
 
     if part.update!(part_params_first)
       redirect_to section_path(part.section)
     else
-      redirect_to final_edit_path
+      redirect_to part_final_edit_path
     end
   end
 
   def final_edit
-    @part = Part.find(params[:id])
+    @part = Part.find(params[:part_id])
   end
 
   def final_update
-    part = Part.find(params[:id])
+    part = Part.find(params[:part_id])
 
     if part.update!(part_params_final)
       redirect_to section_path(part.section)
     else
-      redirect_to final_edit_path
+      redirect_to part_final_edit_path
     end
   end
 

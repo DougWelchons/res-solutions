@@ -33,12 +33,22 @@ RSpec.describe "Reports show page" do
         end
       end
 
-      xit "has a link to the additional documents page" do
+      it "has a link to the additional documents page" do
         visit report_path(@report)
 
         within(".additional_info") do
           expect(page).to have_link("Additional Documents")
         end
+      end
+
+      it "redirects to the additional documents page" do
+        visit report_path(@report)
+
+        within(".additional_info") do
+          click_link("Additional Documents")
+        end
+
+        expect(current_path).to eq(report_additional_documents_path(@report))
       end
 
       xit "has a link to the Field Reviews page" do

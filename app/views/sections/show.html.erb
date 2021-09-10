@@ -42,19 +42,35 @@
                         <h5>Section: <%= part.section_number %></h5>
                         <p>Assessor: <br>
                           <span class="final_assessment">
-                            <%= button_to "Edit", final_edit_path(part), method: "get" %> Final Assessment: <%= part.final_assessment %><br>
+                            <%= button_to "Edit", part_final_edit_path(part), method: "get" %> Final Assessment: <%= part.final_assessment %><br>
                             Score: <%= part.score %><br><br>
                           </span>
                           <div class="first_assessment">
-                            <%= button_to "Edit", first_edit_path(part), method: "get" %> First Assessment: <%= part.first_assessment %>
+                            <%= button_to "Edit", part_first_edit_path(part), method: "get" %> First Assessment: <%= part.first_assessment %>
                           </div>
                         </p>
                         <div>
                           <p>
-                            Additional Documents: <br>
-                            Interview Questions: <br>
-                            Field Review Questions: <br>
-                            Notes: <br>
+                            <div class="add_docs">
+                              <%= button_to "Add", new_part_additional_document_path(part), method: :get %>
+                              Additional Documents:
+                              <% part.additional_documents.each do |document| %>
+                                <div id="add_doc-<%=document.id%>">
+                                  <%= button_to "Edit", edit_part_additional_document_path(part, document), method: :get %> Document:
+                                  <%= document.document %> <br>
+                                  Notes: <%= document.notes %>
+                                </div>
+                              <% end %>
+                            </div>
+                            <div class="interview_questions">
+                              Interview Questions:
+                            </div>
+                            <div class="field_review">
+                              Field Review Questions:
+                            </div>
+                            <div class="notes">
+                              Notes:
+                            </div>
                           </p>
                         </div>
                       </div>

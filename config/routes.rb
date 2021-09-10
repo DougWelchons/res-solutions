@@ -10,10 +10,16 @@ Rails.application.routes.draw do
   get "/auth/failure", to: 'sessions#bad'
   delete "/logout", to: "sessions#destroy"
 
-  resources 'reports', only: [:index, :show, :new]
+  resources 'reports', only: [:index, :show, :new] do
+    resources 'additional_documents', only: [:index]
+  end
+
   resources 'sections', only: [:show]
-  get "/parts/:id/final", to: "parts#final_edit", as: "final_edit"
-  get "/parts/:id/first", to: "parts#first_edit", as: "first_edit"
-  put "/parts/:id/final", to: "parts#final_update"
-  put "/parts/:id/first", to: "parts#first_update"
+  resources :part, only: [] do
+    get "/final", to: "parts#final_edit", as: "final_edit"
+    get "/first", to: "parts#first_edit", as: "first_edit"
+    put "/final", to: "parts#final_update"
+    put "/first", to: "parts#first_update"
+    resources 'additional_documents', only: [:index, :new, :create, :edit, :update]
+  end
 end
