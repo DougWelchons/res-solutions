@@ -9,25 +9,25 @@ class AdditionalDocumentsController < ApplicationController
   def create
     add_doc = @user.additional_documents.new(add_docs_params)
 
-    if add_doc.save!
+    if add_doc.save
       redirect_to section_path(add_doc.section)
     else
-      redirect_to new_part_additional_document_path(params[:part_id])
+      redirect_to new_part_additional_document_path(@part)
     end
   end
 
   def edit
-    # @part = Part.find(params[:part_id])
+    @additional_document = AdditionalDocument.find(params[:id])
   end
 
   def update
-    # add_doc = @user.additional_documents.new(add_docs_params)
+    @additional_document = AdditionalDocument.find(params[:id])
 
-    # if add_doc.save!
-    #   redirect_to section_path(add_doc.section)
-    # else
-    #   redirect_to new_part_additional_document_path(params[:part_id])
-    # end
+    if @additional_document.update(add_docs_params)
+      redirect_to section_path(@additional_document.section)
+    else
+      redirect_to edit_part_additional_document_path(@part, @additional_document)
+    end
   end
 
   private

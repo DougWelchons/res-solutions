@@ -17,6 +17,6 @@ Rails.application.routes.draw do
     get "/first", to: "parts#first_edit", as: "first_edit"
     put "/final", to: "parts#final_update"
     put "/first", to: "parts#first_update"
-    resources 'additional_documents', only: [:index, :new, :create, :edit]
+    resources 'additional_documents', only: [:index, :new, :create, :edit, :update]
   end
 end

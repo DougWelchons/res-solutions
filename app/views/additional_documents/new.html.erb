@@ -1,6 +1,6 @@
 <%= form_with url: part_additional_documents_path(@part), method: :post, local: true do |form| %>
   <%= form.label "Document:" %>
-  <%= form.text_field :document %>
+  <%= form.text_field :document, required: true %>
   <%= form.label "Notes:" %>
   <%= form.text_field :notes %>
   <%= form.submit "Create" %>

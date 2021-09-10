@@ -32,6 +32,13 @@ RSpec.describe 'Additional Documents Add page' do
         click_button "Create"
 
         expect(current_path).to eq(section_path(@section))
+
+        within "#part-#{@part.id}" do
+          within ".add_docs" do
+            expect(page).to have_content("Document: Document Name")
+            expect(page).to have_content("Notes: Notes about needed document")
+          end
+        end
       end
 
       it "retrurns to the add page if the document is not provided" do
@@ -41,6 +48,20 @@ RSpec.describe 'Additional Documents Add page' do
         click_button "Create"
 
         expect(current_path).to eq(new_part_additional_document_path(@part))
+        # expect(page).to have_content("Validation failed: Document can't be blank")
+
+        fill_in :document, with: "Document Name"
+        fill_in :notes, with: "Notes about needed document"
+        click_button "Create"
+
+        expect(current_path).to eq(section_path(@section))
+
+        within "#part-#{@part.id}" do
+          within ".add_docs" do
+            expect(page).to have_content("Document: Document Name")
+            expect(page).to have_content("Notes: Notes about needed document")
+          end
+        end
       end
 
       it "has a log-out button" do
