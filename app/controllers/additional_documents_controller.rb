@@ -2,8 +2,15 @@ class AdditionalDocumentsController < ApplicationController
   before_action :current_user
   before_action :find_part, only: [:new, :create, :edit, :update]
 
+  def index
+    if params[:report_id]
+      @additional_documents = Report.find(params[:report_id]).additional_documents
+    else
+      @additional_documents = AdditionalDocument.all
+    end
+  end
+
   def new
-    # @part = Part.find(params[:part_id])
   end
 
   def create
