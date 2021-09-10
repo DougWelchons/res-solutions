@@ -49,7 +49,7 @@ RSpec.describe "section show page" do
           end
         end
 
-        expect(current_path).to eq(first_edit_path(@section.parts.first))
+        expect(current_path).to eq(part_first_edit_path(@section.parts.first))
       end
 
       it "has a final assessment edit button" do
@@ -71,7 +71,7 @@ RSpec.describe "section show page" do
           end
         end
 
-        expect(current_path).to eq(final_edit_path(@section.parts.first))
+        expect(current_path).to eq(part_final_edit_path(@section.parts.first))
       end
 
       it "has a log-out button" do
