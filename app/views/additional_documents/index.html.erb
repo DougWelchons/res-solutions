@@ -1,0 +1,36 @@
+<style>
+.part {
+  width: 33%;
+}
+.table {
+  width: 95%;
+  max-width: 500px;
+  border: 3px black solid;
+  /* border-color: black; */
+}
+
+.cell {
+  border: 3px black solid;
+  /* border-color: black; */
+}
+
+</style>
+
+<table class="table">
+  <tr class="cell">
+    <th class="cell">Section Number</th>
+    <th class="cell">Document</th>
+    <th class="cell">Notes</th>
+    <th class="cell">Assessor</th>
+  </tr>
+  <% @additional_documents.each do |document| %>
+    <tr class="cell">
+      <div id="document-<%=document.id%>">
+        <td class="cell"><%= document.part.section_number %></td>
+        <td class="cell"><%= document.document %></td>
+        <td class="cell"><%= document.notes %></td>
+        <td class="cell"><%= document.user.name %></td>
+      </div>
+    </tr>
+  <% end %>
+</table>
