@@ -34,14 +34,14 @@ RSpec.describe 'Interview Question Edit page' do
 
         expect(current_path).to eq(section_path(@section))
 
-        # within "#part-#{@part.id}" do
-        #   within ".interview_questions" do
-        #     within "#interview_question-#{@interview_question.id}" do
-        #       expect(page).to have_content("Question: Changed Question")
-        #       expect(page).to have_content("Notes: Notes about the question")
-        #     end
-        #   end
-        # end
+        within "#part-#{@part.id}" do
+          within ".interview_questions" do
+            within "#interview_question-#{@interview_question.id}" do
+              expect(page).to have_content("Question: Changed Question")
+              expect(page).to have_content("Notes: Notes about the question")
+            end
+          end
+        end
       end
 
       it "retrurns to the Edit page if the question is not provided" do

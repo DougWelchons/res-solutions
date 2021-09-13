@@ -33,12 +33,12 @@ RSpec.describe 'Interview Question New page' do
 
         expect(current_path).to eq(section_path(@section))
 
-        # within "#part-#{@part.id}" do
-        #   within ".additional_documents" do
-        #     expect(page).to have_content("Question: This is my question")
-        #     expect(page).to have_content("Notes: Notes about the question")
-        #   end
-        # end
+        within "#part-#{@part.id}" do
+          within ".interview_questions" do
+            expect(page).to have_content("Question: This is my question")
+            expect(page).to have_content("Notes: Notes about the question")
+          end
+        end
       end
 
       it "retrurns to the new page if the question is not provided" do
@@ -56,12 +56,12 @@ RSpec.describe 'Interview Question New page' do
 
         expect(current_path).to eq(section_path(@section))
 
-        # within "#part-#{@part.id}" do
-        #   within ".additional_documents" do
-        #     expect(page).to have_content("Document: This is my question")
-        #     expect(page).to have_content("Notes: Notes about the question")
-        #   end
-        # end
+        within "#part-#{@part.id}" do
+          within ".interview_questions" do
+            expect(page).to have_content("Question: This is my question")
+            expect(page).to have_content("Notes: Notes about the question")
+          end
+        end
       end
 
       it "has a log-out button" do
