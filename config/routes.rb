@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources 'reports', only: [:index, :show, :new] do
     resources 'additional_documents', only: [:index]
+    resources 'interview_questions', only: [:index]
   end
 
   resources 'sections', only: [:show]

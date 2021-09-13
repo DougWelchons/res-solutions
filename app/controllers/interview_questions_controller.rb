@@ -2,6 +2,14 @@ class InterviewQuestionsController < ApplicationController
   before_action :current_user
   before_action :find_part, only: [:new, :create, :edit, :update]
 
+  def index
+    if params[:report_id]
+      @interview_questions = Report.find(params[:report_id]).interview_questions
+    else
+      @interview_questions = InterviewQuestion.all
+    end
+  end
+
   def new
     @part = Part.find(params[:part_id])
   end
