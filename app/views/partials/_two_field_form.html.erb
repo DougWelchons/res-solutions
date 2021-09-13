@@ -1,0 +1,7 @@
+<%= form_with url: url, method: method, local: true do |form| %>
+  <%= form.label label %>
+  <%= form.text_field element, value: value, required: true %>
+  <%= form.label "Notes:" %>
+  <%= form.text_field :notes, value: notes %>
+  <%= form.submit submit %>
+<% end %>

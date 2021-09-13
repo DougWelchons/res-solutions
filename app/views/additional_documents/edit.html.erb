@@ -1,7 +1,10 @@
-<%= form_with url: part_additional_document_path(@part), method: :put, local: true do |form| %>
-  <%= form.label "Document:" %>
-  <%= form.text_field :document, value: @additional_document.document, required: true %>
-  <%= form.label "Notes:" %>
-  <%= form.text_field :notes, value: @additional_document.notes %>
-  <%= form.submit "Update" %>
-<% end %>
+<%= render partial: 'partials/two_field_form',
+locals: {
+          url: part_additional_document_path(@part),
+          method: :put,
+          label: "document:",
+          element: :document,
+          value: @additional_document.document,
+          notes: @additional_document.notes,
+          submit: "Update"
+        } %>
