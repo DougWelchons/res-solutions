@@ -63,7 +63,15 @@
                               <% end %>
                             </div>
                             <div class="interview_questions">
+                              <%= button_to "Add", new_part_interview_question_path(part), method: :get %>
                               Interview Questions:
+                              <% part.interview_questions.each do |question| %>
+                                <div id="interview_question-<%=question.id%>">
+                                  <%= button_to "Edit", edit_part_interview_question_path(part, question), method: :get %> Question:
+                                  <%= question.question %> <br>
+                                  Notes: <%= question.notes %>
+                                </div>
+                              <% end %>
                             </div>
                             <div class="field_review">
                               Field Review Questions:

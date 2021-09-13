@@ -143,6 +143,69 @@ RSpec.describe "section show page" do
         end
       end
 
+      describe "Interview Questions" do
+        before :each do
+          @interview_question1 = @part.interview_questions.create!(question: "question1", notes: "Lots'O'Notes", user: @user)
+          @interview_question2 = @part.interview_questions.create!(question: "question2", notes: "All the notes!", user: @user)
+        end
+
+        it "has a button to add new interview questions" do
+          visit section_path(@section)
+
+          within "#part-#{@part.id}" do
+            within ".interview_questions" do
+              expect(page).to have_button("Add")
+            end
+          end
+        end
+
+        it "redirects to the interview question new page when clicked" do
+          visit section_path(@section)
+
+          within "#part-#{@part.id}" do
+            within ".interview_questions" do
+              click_button "Add"
+            end
+          end
+
+          expect(current_path).to eq(new_part_interview_question_path(@part))
+        end
+
+        it "shows each interview question that has already been requested" do
+          visit section_path(@section)
+
+          within "#part-#{@part.id}" do
+            within ".interview_questions" do
+              within "#interview_question-#{@interview_question1.id}" do
+                expect(page).to have_content("Question: question1")
+                expect(page).to have_content("Notes: Lots'O'Notes")
+                expect(page).to have_button("Edit")
+              end
+
+              within "#interview_question-#{@interview_question2.id}" do
+                expect(page).to have_button("Edit")
+                expect(page).to have_content("Question: question2")
+                expect(page).to have_content("Notes: All the notes!")
+              end
+            end
+          end
+        end
+
+        it "redirects to the interview question edit page when the edit link is clicked" do
+          visit section_path(@section)
+
+          within "#part-#{@part.id}" do
+            within ".interview_questions" do
+              within "#interview_question-#{@interview_question2.id}" do
+                click_button "Edit"
+              end
+            end
+          end
+
+          expect(current_path).to eq(edit_part_interview_question_path(@part, @interview_question2))
+        end
+      end
+
       it "logs out the user when the log-out button is clicked" do
         visit section_path(@section)
 
