@@ -29,10 +29,26 @@ RSpec.describe 'Additional Documents Edit page' do
         click_button :login
       end
 
-      xit "lists all of a reports additional documents" do
+      it "lists all of a reports additional documents sorted by its associated part number" do
         visit report_additional_documents_path(@report)
 
-        expect(page).to have_content
+        expect(@add_doc1.document).to appear_before(@add_doc3.document)
+        expect(@add_doc3.document).to appear_before(@add_doc4.document)
+        expect(@add_doc4.document).to appear_before(@add_doc2.document)
+        expect(@add_doc2.document).to appear_before(@add_doc5.document)
+        expect(@add_doc5.document).to appear_before(@add_doc6.document)
+        expect(@add_doc6.document).to appear_before(@add_doc7.document)
+      end
+
+      it "lists each documents part number, document, notes, and assessor" do
+        visit report_additional_documents_path(@report)
+
+        within "#document-#{@add_doc1.id}" do
+          expect(page).to have_content(@add_doc1.part.section_number)
+          expect(page).to have_content(@add_doc1.document)
+          expect(page).to have_content(@add_doc1.notes)
+          expect(page).to have_content(@add_doc1.user.name)
+        end
       end
 
       it "has a log-out button" do
