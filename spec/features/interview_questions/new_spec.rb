@@ -34,7 +34,7 @@ RSpec.describe 'Interview Question New page' do
         expect(current_path).to eq(section_path(@section))
 
         # within "#part-#{@part.id}" do
-        #   within ".add_docs" do
+        #   within ".additional_documents" do
         #     expect(page).to have_content("Question: This is my question")
         #     expect(page).to have_content("Notes: Notes about the question")
         #   end
@@ -57,7 +57,7 @@ RSpec.describe 'Interview Question New page' do
         expect(current_path).to eq(section_path(@section))
 
         # within "#part-#{@part.id}" do
-        #   within ".add_docs" do
+        #   within ".additional_documents" do
         #     expect(page).to have_content("Document: This is my question")
         #     expect(page).to have_content("Notes: Notes about the question")
         #   end

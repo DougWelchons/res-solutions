@@ -24,7 +24,7 @@ RSpec.describe 'Additional Documents New page' do
         expect(page).to have_button("Create")
       end
 
-      it "creates a add_doc object and redirects to the section show page when the create button is clicked" do
+      it "creates a additional_document object and redirects to the section show page when the create button is clicked" do
         visit new_part_additional_document_path(@part)
 
         fill_in :document, with: "Document Name"
@@ -34,7 +34,7 @@ RSpec.describe 'Additional Documents New page' do
         expect(current_path).to eq(section_path(@section))
 
         within "#part-#{@part.id}" do
-          within ".add_docs" do
+          within ".additional_documents" do
             expect(page).to have_content("Document: Document Name")
             expect(page).to have_content("Notes: Notes about needed document")
           end
@@ -57,7 +57,7 @@ RSpec.describe 'Additional Documents New page' do
         expect(current_path).to eq(section_path(@section))
 
         within "#part-#{@part.id}" do
-          within ".add_docs" do
+          within ".additional_documents" do
             expect(page).to have_content("Document: Document Name")
             expect(page).to have_content("Notes: Notes about needed document")
           end

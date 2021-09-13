@@ -51,11 +51,11 @@
                         </p>
                         <div>
                           <p>
-                            <div class="add_docs">
+                            <div class="additional_documents">
                               <%= button_to "Add", new_part_additional_document_path(part), method: :get %>
                               Additional Documents:
                               <% part.additional_documents.each do |document| %>
-                                <div id="add_doc-<%=document.id%>">
+                                <div id="additional_document-<%=document.id%>">
                                   <%= button_to "Edit", edit_part_additional_document_path(part, document), method: :get %> Document:
                                   <%= document.document %> <br>
                                   Notes: <%= document.notes %>
