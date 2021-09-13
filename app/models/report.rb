@@ -8,7 +8,8 @@ after_create :build_report_sections
   has_many :related_pt2s, through: :parts
   has_many :related_pt3s, through: :parts
   has_many :additional_documents, through: :parts
-  
+  has_many :interview_questions, through: :parts
+
 
   validates :name, presence: true, uniqueness:true
   validates :company, presence: true
