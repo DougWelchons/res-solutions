@@ -18,7 +18,6 @@ RSpec.describe 'Interview Edit page' do
 
       it "shows all interview fields" do
         visit edit_section_interview_path(@section, @interview)
-# save_and_open_page
 
         expect(page).to have_field("interview[date]")
         expect(page).to have_field("interview[time]")

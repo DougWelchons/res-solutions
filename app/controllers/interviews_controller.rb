@@ -1,6 +1,21 @@
 class InterviewsController < ApplicationController
   before_action :current_user
 
+
+  def index
+    if params[:report_id]
+      @interviews = Report.find(params[:report_id]).interviews
+    elsif params[:section_id]
+      @interviews = Section.find(params[:section_id]).interviews
+    else
+      @interviews = Interview.all
+    end
+  end
+
+  def show
+    @interview = Interview.find(params[:id])
+  end
+  
   def new
   end
 

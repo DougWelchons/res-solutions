@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources 'reports', only: [:index, :show, :new] do
     resources 'additional_documents', only: [:index]
     resources 'interview_questions', only: [:index]
+    resources 'interviews', only: [:index]
   end
 
   resources 'sections', only: [:show] do
@@ -27,4 +28,6 @@ Rails.application.routes.draw do
     resources 'additional_documents', only: [:index, :new, :create, :edit, :update]
     resources 'interview_questions', only: [:index, :new, :create, :edit, :update]
   end
+
+  resources "interviews", only: [:show]
 end
