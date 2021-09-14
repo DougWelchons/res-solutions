@@ -14,6 +14,20 @@ class InterviewsController < ApplicationController
     end
   end
 
+  def edit
+    @interview = Interview.find(params[:id])
+  end
+
+  def update
+    @interview = Interview.find(params[:id])
+
+    if @interview.update(interview_params)
+      redirect_to report_path(@interview.report)
+    else
+      redirect_to section_interview_path(@section, @interview)
+    end
+  end
+
   private
 
   def interview_params
