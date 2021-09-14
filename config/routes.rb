@@ -15,7 +15,10 @@ Rails.application.routes.draw do
     resources 'interview_questions', only: [:index]
   end
 
-  resources 'sections', only: [:show]
+  resources 'sections', only: [:show] do
+    resources 'interviews', only: [:index, :new, :create, :edit, :update]
+  end
+
   resources :part, only: [] do
     get "/final", to: "parts#final_edit", as: "final_edit"
     get "/first", to: "parts#first_edit", as: "first_edit"
