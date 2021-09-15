@@ -19,6 +19,13 @@
   <%= "#{@section.name}" %>
 </h1>
 
+<div class="links">
+  <div class="interviews">
+    <%= link_to "Interviews", section_interviews_path(@section) %>
+    <%= link_to "New Interview", new_section_interview_path(@section) %>
+  </div>
+</div>
+
 <div class="sub_sections">
   <% @section.sub_sections.each do |sub_section| %>
     <div id="sub_section_<%= sub_section.id %>">

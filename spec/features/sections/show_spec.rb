@@ -206,6 +206,30 @@ RSpec.describe "section show page" do
         end
       end
 
+      describe "Interviews" do
+        it "has a link to the interviews index page" do
+          visit section_path(@section)
+
+          within ".interviews" do
+            expect(page).to have_link("Interviews")
+            click_link("Interviews")
+          end
+
+          expect(current_path).to eq(section_interviews_path(@section))
+        end
+
+        it "has a link to start a new interview" do
+          visit section_path(@section)
+
+          within ".interviews" do
+            expect(page).to have_link("New Interview")
+            click_link("New Interview")
+          end
+
+          expect(current_path).to eq(new_section_interview_path(@section))
+        end
+      end
+
       it "logs out the user when the log-out button is clicked" do
         visit section_path(@section)
 
