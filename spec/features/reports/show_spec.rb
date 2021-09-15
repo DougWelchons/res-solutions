@@ -77,12 +77,22 @@ RSpec.describe "Reports show page" do
         expect(current_path).to eq(report_interview_questions_path(@report))
       end
 
-      xit "has a link to the Interviews page" do
+      it "has a link to the Interviews page" do
         visit report_path(@report)
 
         within(".additional_info") do
           expect(page).to have_link("Interviews")
         end
+      end
+
+      it "redirects to the interview page" do
+        visit report_path(@report)
+
+        within(".additional_info") do
+          click_link("Interviews")
+        end
+
+        expect(current_path).to eq(report_interviews_path(@report))
       end
 
       it "has a log-out button" do
