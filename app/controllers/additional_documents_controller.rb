@@ -14,10 +14,10 @@ class AdditionalDocumentsController < ApplicationController
   end
 
   def create
-    add_doc = @user.additional_documents.new(add_docs_params)
+    additional_document = @user.additional_documents.new(additional_documents_params)
 
-    if add_doc.save
-      redirect_to section_path(add_doc.section)
+    if additional_document.save
+      redirect_to section_path(additional_document.section)
     else
       redirect_to new_part_additional_document_path(@part)
     end
@@ -30,7 +30,7 @@ class AdditionalDocumentsController < ApplicationController
   def update
     @additional_document = AdditionalDocument.find(params[:id])
 
-    if @additional_document.update(add_docs_params)
+    if @additional_document.update(additional_documents_params)
       redirect_to section_path(@additional_document.section)
     else
       redirect_to edit_part_additional_document_path(@part, @additional_document)
@@ -39,7 +39,7 @@ class AdditionalDocumentsController < ApplicationController
 
   private
 
-  def add_docs_params
+  def additional_documents_params
     params.permit(:document, :notes, :part_id)
   end
 

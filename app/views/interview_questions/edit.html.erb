@@ -1,0 +1,10 @@
+<%= render partial: 'partials/two_field_form',
+locals: {
+          url: part_interview_question_path(@part),
+          method: :put,
+          label: "Question:",
+          element: :question,
+          value: @interview_question.question,
+          notes: @interview_question.notes,
+          submit: "Update"
+        } %>

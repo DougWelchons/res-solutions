@@ -1,0 +1,17 @@
+<%= form_with model: @interview, url: url, local: true do |form| %>
+  <%= form.label "Date:" %>
+  <%= form.date_field :date %>
+  <%= form.label "Time:" %>
+  <%= form.time_field :time %>
+  <%= form.label "Stakeholder:" %>
+  <%= form.text_field :stakeholder %>
+  <%= form.label "Attendees:" %>
+  <%= form.text_area :attendees %>
+  <%= form.label "Background:" %>
+  <%= form.text_area :background %>
+  <%= form.label "Interview:" %>
+  <%= form.text_area :interview %>
+  <%= form.label "Report Summery:" %>
+  <%= form.text_area :report_summery %>
+  <%= form.submit %>
+<% end %>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Additional Documents New page' do
+RSpec.describe 'Interview Question New page' do
   before :each do
     @report = Report.create(name: "Report 1", company: "Sample Company")
     @section = @report.sections.first
@@ -16,68 +16,68 @@ RSpec.describe 'Additional Documents New page' do
         click_button :login
       end
 
-      it "shows a field to add the needed document and notes" do
-        visit new_part_additional_document_path(@part)
+      it "shows a field to add the question and notes" do
+        visit new_part_interview_question_path(@part)
 
-        expect(page).to have_field(:document)
+        expect(page).to have_field(:question)
         expect(page).to have_field(:notes)
         expect(page).to have_button("Create")
       end
 
-      it "creates a additional_document object and redirects to the section show page when the create button is clicked" do
-        visit new_part_additional_document_path(@part)
+      it "creates an interview question object and redirects to the section show page when the create button is clicked" do
+        visit new_part_interview_question_path(@part)
 
-        fill_in :document, with: "Document Name"
-        fill_in :notes, with: "Notes about needed document"
+        fill_in :question, with: "This is my question"
+        fill_in :notes, with: "Notes about the question"
         click_button "Create"
 
         expect(current_path).to eq(section_path(@section))
 
         within "#part-#{@part.id}" do
-          within ".additional_documents" do
-            expect(page).to have_content("Document: Document Name")
-            expect(page).to have_content("Notes: Notes about needed document")
+          within ".interview_questions" do
+            expect(page).to have_content("Question: This is my question")
+            expect(page).to have_content("Notes: Notes about the question")
           end
         end
       end
 
-      it "retrurns to the add page if the document is not provided" do
-        visit new_part_additional_document_path(@part)
+      it "retrurns to the new page if the question is not provided" do
+        visit new_part_interview_question_path(@part)
 
-        fill_in :notes, with: "Notes about needed document"
+        fill_in :notes, with: "Notes about the question"
         click_button "Create"
 
-        expect(current_path).to eq(new_part_additional_document_path(@part))
+        expect(current_path).to eq(new_part_interview_question_path(@part))
         # expect(page).to have_content("Validation failed: Document can't be blank")
 
-        fill_in :document, with: "Document Name"
-        fill_in :notes, with: "Notes about needed document"
+        fill_in :question, with: "This is my question"
+        fill_in :notes, with: "Notes about the question"
         click_button "Create"
 
         expect(current_path).to eq(section_path(@section))
 
         within "#part-#{@part.id}" do
-          within ".additional_documents" do
-            expect(page).to have_content("Document: Document Name")
-            expect(page).to have_content("Notes: Notes about needed document")
+          within ".interview_questions" do
+            expect(page).to have_content("Question: This is my question")
+            expect(page).to have_content("Notes: Notes about the question")
           end
         end
       end
 
       it "has a log-out button" do
-        visit new_part_additional_document_path(@part)
+        visit new_part_interview_question_path(@part)
 
         expect(page).to have_button("Logout")
       end
 
       it "logs out the user when the log-out button is clicked" do
-        visit new_part_additional_document_path(@part)
+        visit new_part_interview_question_path(@part)
 
         click_button "Logout"
         expect(current_path).to eq(root_path)
         expect(page).to have_content("You have been logged out.")
 
-        visit new_part_additional_document_path(@part)
+        visit new_part_interview_question_path(@part)
         expect(current_path).to eq(root_path)
         expect(page).to have_content("Sorry, your credentials are bad.")
       end
@@ -87,7 +87,7 @@ RSpec.describe 'Additional Documents New page' do
   describe "Sad Path" do
     describe "when a loged out user visits the new additional document page it" do
       it "redirects to the login page" do
-        visit new_part_additional_document_path(@part)
+        visit new_part_interview_question_path(@part)
         expect(current_path).to eq(root_path)
         expect(page).to have_content("Sorry, your credentials are bad.")
       end

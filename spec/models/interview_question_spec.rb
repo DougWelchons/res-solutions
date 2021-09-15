@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AdditionalDocument, type: :model do
+RSpec.describe InterviewQuestion, type: :model do
   describe "relationships" do
     it { should belong_to(:part) }
     it { should belong_to(:user) }
@@ -10,6 +10,6 @@ RSpec.describe AdditionalDocument, type: :model do
   end
 
   describe "validations" do
-    it { should validate_presence_of(:document) }
+    it { should validate_presence_of(:question) }
   end
 end

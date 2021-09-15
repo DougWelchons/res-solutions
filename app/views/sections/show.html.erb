@@ -19,6 +19,13 @@
   <%= "#{@section.name}" %>
 </h1>
 
+<div class="links">
+  <div class="interviews">
+    <%= link_to "Interviews", section_interviews_path(@section) %>
+    <%= link_to "New Interview", new_section_interview_path(@section) %>
+  </div>
+</div>
+
 <div class="sub_sections">
   <% @section.sub_sections.each do |sub_section| %>
     <div id="sub_section_<%= sub_section.id %>">
@@ -51,11 +58,11 @@
                         </p>
                         <div>
                           <p>
-                            <div class="add_docs">
+                            <div class="additional_documents">
                               <%= button_to "Add", new_part_additional_document_path(part), method: :get %>
                               Additional Documents:
                               <% part.additional_documents.each do |document| %>
-                                <div id="add_doc-<%=document.id%>">
+                                <div id="additional_document-<%=document.id%>">
                                   <%= button_to "Edit", edit_part_additional_document_path(part, document), method: :get %> Document:
                                   <%= document.document %> <br>
                                   Notes: <%= document.notes %>
@@ -63,7 +70,15 @@
                               <% end %>
                             </div>
                             <div class="interview_questions">
+                              <%= button_to "Add", new_part_interview_question_path(part), method: :get %>
                               Interview Questions:
+                              <% part.interview_questions.each do |question| %>
+                                <div id="interview_question-<%=question.id%>">
+                                  <%= button_to "Edit", edit_part_interview_question_path(part, question), method: :get %> Question:
+                                  <%= question.question %> <br>
+                                  Notes: <%= question.notes %>
+                                </div>
+                              <% end %>
                             </div>
                             <div class="field_review">
                               Field Review Questions:

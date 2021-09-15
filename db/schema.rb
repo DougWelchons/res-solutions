@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_09_200103) do
+ActiveRecord::Schema.define(version: 2021_09_13_155921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,33 @@ ActiveRecord::Schema.define(version: 2021_09_09_200103) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["part_id"], name: "index_additional_documents_on_part_id"
     t.index ["user_id"], name: "index_additional_documents_on_user_id"
+  end
+
+  create_table "interview_questions", force: :cascade do |t|
+    t.string "question"
+    t.string "notes"
+    t.bigint "part_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["part_id"], name: "index_interview_questions_on_part_id"
+    t.index ["user_id"], name: "index_interview_questions_on_user_id"
+  end
+
+  create_table "interviews", force: :cascade do |t|
+    t.date "date"
+    t.time "time"
+    t.string "stakeholder"
+    t.string "attendees"
+    t.string "background"
+    t.string "interview"
+    t.string "report_summery"
+    t.bigint "section_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["section_id"], name: "index_interviews_on_section_id"
+    t.index ["user_id"], name: "index_interviews_on_user_id"
   end
 
   create_table "parts", force: :cascade do |t|
@@ -86,6 +113,10 @@ ActiveRecord::Schema.define(version: 2021_09_09_200103) do
 
   add_foreign_key "additional_documents", "parts"
   add_foreign_key "additional_documents", "users"
+  add_foreign_key "interview_questions", "parts"
+  add_foreign_key "interview_questions", "users"
+  add_foreign_key "interviews", "sections"
+  add_foreign_key "interviews", "users"
   add_foreign_key "parts", "sub_sections"
   add_foreign_key "parts", "users"
   add_foreign_key "related_parts", "parts", column: "pt1_id"

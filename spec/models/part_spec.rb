@@ -10,6 +10,7 @@ RSpec.describe Part, type: :model do
     it { should have_one(:section).through(:sub_section) }
     it { should have_one(:report).through(:section) }
     it { should have_many(:additional_documents) }
+    it { should have_many(:interview_questions) }
   end
 
   describe "validations" do

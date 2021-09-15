@@ -82,15 +82,15 @@ RSpec.describe "section show page" do
 
       describe "Additional Documents" do
         before :each do
-          @add_doc1 = @part.additional_documents.create!(document: "Doc1", notes: "Lots'O'Notes", user: @user)
-          @add_doc2 = @part.additional_documents.create!(document: "Doc2", notes: "All the notes!", user: @user)
+          @additional_document1 = @part.additional_documents.create!(document: "Doc1", notes: "Lots'O'Notes", user: @user)
+          @additional_document2 = @part.additional_documents.create!(document: "Doc2", notes: "All the notes!", user: @user)
         end
 
         it "has a button to add new additional document requests" do
           visit section_path(@section)
 
           within "#part-#{@part.id}" do
-            within ".add_docs" do
+            within ".additional_documents" do
               expect(page).to have_button("Add")
             end
           end
@@ -100,7 +100,7 @@ RSpec.describe "section show page" do
           visit section_path(@section)
 
           within "#part-#{@part.id}" do
-            within ".add_docs" do
+            within ".additional_documents" do
               click_button "Add"
             end
           end
@@ -112,14 +112,14 @@ RSpec.describe "section show page" do
           visit section_path(@section)
 
           within "#part-#{@part.id}" do
-            within ".add_docs" do
-              within "#add_doc-#{@add_doc1.id}" do
+            within ".additional_documents" do
+              within "#additional_document-#{@additional_document1.id}" do
                 expect(page).to have_content("Document: Doc1")
                 expect(page).to have_content("Notes: Lots'O'Notes")
                 expect(page).to have_button("Edit")
               end
 
-              within "#add_doc-#{@add_doc2.id}" do
+              within "#additional_document-#{@additional_document2.id}" do
                 expect(page).to have_button("Edit")
                 expect(page).to have_content("Document: Doc2")
                 expect(page).to have_content("Notes: All the notes!")
@@ -128,18 +128,105 @@ RSpec.describe "section show page" do
           end
         end
 
-        it "redirects to the add_doc edit page when the edit link is clicked" do
+        it "redirects to the additional_document edit page when the edit link is clicked" do
           visit section_path(@section)
 
           within "#part-#{@part.id}" do
-            within ".add_docs" do
-              within "#add_doc-#{@add_doc2.id}" do
+            within ".additional_documents" do
+              within "#additional_document-#{@additional_document2.id}" do
                 click_button "Edit"
               end
             end
           end
 
-          expect(current_path).to eq(edit_part_additional_document_path(@part, @add_doc2))
+          expect(current_path).to eq(edit_part_additional_document_path(@part, @additional_document2))
+        end
+      end
+
+      describe "Interview Questions" do
+        before :each do
+          @interview_question1 = @part.interview_questions.create!(question: "question1", notes: "Lots'O'Notes", user: @user)
+          @interview_question2 = @part.interview_questions.create!(question: "question2", notes: "All the notes!", user: @user)
+        end
+
+        it "has a button to add new interview questions" do
+          visit section_path(@section)
+
+          within "#part-#{@part.id}" do
+            within ".interview_questions" do
+              expect(page).to have_button("Add")
+            end
+          end
+        end
+
+        it "redirects to the interview question new page when clicked" do
+          visit section_path(@section)
+
+          within "#part-#{@part.id}" do
+            within ".interview_questions" do
+              click_button "Add"
+            end
+          end
+
+          expect(current_path).to eq(new_part_interview_question_path(@part))
+        end
+
+        it "shows each interview question that has already been requested" do
+          visit section_path(@section)
+
+          within "#part-#{@part.id}" do
+            within ".interview_questions" do
+              within "#interview_question-#{@interview_question1.id}" do
+                expect(page).to have_content("Question: question1")
+                expect(page).to have_content("Notes: Lots'O'Notes")
+                expect(page).to have_button("Edit")
+              end
+
+              within "#interview_question-#{@interview_question2.id}" do
+                expect(page).to have_button("Edit")
+                expect(page).to have_content("Question: question2")
+                expect(page).to have_content("Notes: All the notes!")
+              end
+            end
+          end
+        end
+
+        it "redirects to the interview question edit page when the edit link is clicked" do
+          visit section_path(@section)
+
+          within "#part-#{@part.id}" do
+            within ".interview_questions" do
+              within "#interview_question-#{@interview_question2.id}" do
+                click_button "Edit"
+              end
+            end
+          end
+
+          expect(current_path).to eq(edit_part_interview_question_path(@part, @interview_question2))
+        end
+      end
+
+      describe "Interviews" do
+        it "has a link to the interviews index page" do
+          visit section_path(@section)
+
+          within ".interviews" do
+            expect(page).to have_link("Interviews")
+            click_link("Interviews")
+          end
+
+          expect(current_path).to eq(section_interviews_path(@section))
+        end
+
+        it "has a link to start a new interview" do
+          visit section_path(@section)
+
+          within ".interviews" do
+            expect(page).to have_link("New Interview")
+            click_link("New Interview")
+          end
+
+          expect(current_path).to eq(new_section_interview_path(@section))
         end
       end
 

@@ -12,14 +12,22 @@ Rails.application.routes.draw do
 
   resources 'reports', only: [:index, :show, :new] do
     resources 'additional_documents', only: [:index]
+    resources 'interview_questions', only: [:index]
+    resources 'interviews', only: [:index]
   end
 
-  resources 'sections', only: [:show]
+  resources 'sections', only: [:show] do
+    resources 'interviews', only: [:index, :new, :create, :edit, :update]
+  end
+
   resources :part, only: [] do
     get "/final", to: "parts#final_edit", as: "final_edit"
     get "/first", to: "parts#first_edit", as: "first_edit"
     put "/final", to: "parts#final_update"
     put "/first", to: "parts#first_update"
     resources 'additional_documents', only: [:index, :new, :create, :edit, :update]
+    resources 'interview_questions', only: [:index, :new, :create, :edit, :update]
   end
+
+  resources "interviews", only: [:index, :show]
 end
