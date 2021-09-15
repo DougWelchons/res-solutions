@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Additional Documents Edit page' do
+RSpec.describe 'Additional Documents index page' do
   before :each do
     @report = Report.create!(name: "Report 1", company: "Sample Company")
     @report2 = Report.create!(name: "Report 2", company: "Sample Company")
@@ -8,12 +8,12 @@ RSpec.describe 'Additional Documents Edit page' do
     @section2 = @report.sections.second
     @section3 = @report.sections.last
     @user = User.create!(name: "Name1", email: "email@domain.com")
-    @interview1 = @user.interviews.create!(date: Date.yesterday, time: Time.now, stakeholder: "Stakeholder1", background: "Background1", interview: "interview1", report_summery: "Report Summery1", section: @section1)
-    @interview2 = @user.interviews.create!(date: Date.yesterday, time: Time.now, stakeholder: "Stakeholder2", background: "Background2", interview: "interview2", report_summery: "Report Summery2", section: @section2)
-    @interview3 = @user.interviews.create!(date: Date.yesterday, time: Time.now, stakeholder: "Stakeholder3", background: "Background3", interview: "interview3", report_summery: "Report Summery3", section: @section1)
-    @interview4 = @user.interviews.create!(date: Date.yesterday, time: Time.now, stakeholder: "Stakeholder4", background: "Background4", interview: "interview4", report_summery: "Report Summery4", section: @section3)
-    @interview5 = @user.interviews.create!(date: Date.yesterday, time: Time.now, stakeholder: "Stakeholder5", background: "Background5", interview: "interview5", report_summery: "Report Summery5", section: @section1)
-    @interview6 = @user.interviews.create!(date: Date.yesterday, time: Time.now, stakeholder: "Stakeholder1", background: "Background1", interview: "interview1", report_summery: "Report Summery1", section: @report2.sections.first)
+    @interview1 = @user.interviews.create!(date: Date.yesterday, time: "04:15", stakeholder: "Stakeholder1", background: "Background1", interview: "interview1", report_summery: "Report Summery1", section: @section1)
+    @interview2 = @user.interviews.create!(date: Date.yesterday, time: "04:20", stakeholder: "Stakeholder2", background: "Background2", interview: "interview2", report_summery: "Report Summery2", section: @section2)
+    @interview3 = @user.interviews.create!(date: Date.yesterday, time: "15:15", stakeholder: "Stakeholder3", background: "Background3", interview: "interview3", report_summery: "Report Summery3", section: @section1)
+    @interview4 = @user.interviews.create!(date: Date.yesterday, time: "20:15", stakeholder: "Stakeholder4", background: "Background4", interview: "interview4", report_summery: "Report Summery4", section: @section3)
+    @interview5 = @user.interviews.create!(date: Date.yesterday, time: "19:30", stakeholder: "Stakeholder5", background: "Background5", interview: "interview5", report_summery: "Report Summery5", section: @section1)
+    @interview6 = @user.interviews.create!(date: Date.yesterday, time: "04:15", stakeholder: "Stakeholder1", background: "Background1", interview: "interview1", report_summery: "Report Summery1", section: @report2.sections.first)
   end
 
   describe "Happy path" do
