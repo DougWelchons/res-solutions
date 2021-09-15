@@ -29,5 +29,5 @@ Rails.application.routes.draw do
     resources 'interview_questions', only: [:index, :new, :create, :edit, :update]
   end
 
-  resources "interviews", only: [:show]
+  resources "interviews", only: [:index, :show]
 end
