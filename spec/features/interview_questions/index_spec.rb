@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Additional Documents Edit page' do
+RSpec.describe 'interview questions index page' do
   before :each do
     @report = Report.create!(name: "Report 1", company: "Sample Company")
     @section1 = @report.sections.first
@@ -29,16 +29,16 @@ RSpec.describe 'Additional Documents Edit page' do
         click_button :login
       end
 
-      it "lists all of a reports interview questions sorted by its associated part number" do
-        visit report_interview_questions_path(@report)
-
-        expect(@interview_question1.question).to appear_before(@interview_question3.question)
-        expect(@interview_question3.question).to appear_before(@interview_question4.question)
-        expect(@interview_question4.question).to appear_before(@interview_question2.question)
-        expect(@interview_question2.question).to appear_before(@interview_question5.question)
-        expect(@interview_question5.question).to appear_before(@interview_question6.question)
-        expect(@interview_question6.question).to appear_before(@interview_question7.question)
-      end
+      # it "lists all of a reports interview questions sorted by its associated part number" do
+      #   visit report_interview_questions_path(@report)
+      #
+      #   expect(@interview_question1.question).to appear_before(@interview_question3.question)
+      #   expect(@interview_question3.question).to appear_before(@interview_question4.question)
+      #   expect(@interview_question4.question).to appear_before(@interview_question2.question)
+      #   expect(@interview_question2.question).to appear_before(@interview_question5.question)
+      #   expect(@interview_question5.question).to appear_before(@interview_question6.question)
+      #   expect(@interview_question6.question).to appear_before(@interview_question7.question)
+      # end
 
       it "lists each questions part number, question, notes, and assessor" do
         visit report_interview_questions_path(@report)
