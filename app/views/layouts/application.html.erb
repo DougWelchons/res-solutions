@@ -15,9 +15,18 @@
       <%= content_tag :div, msg, class: name %>
     <% end %>
 
-    <% unless @user.nil? %>
-      <%= button_to "Logout", logout_path, method: :delete %>
+    <div class="nav-bar">
+      <% unless @nav_bar.nil? %>
+        <% @nav_bar.each do |key, button| %>
+          <div style="float: left;"><%= button_to button[:title], button[:path], method: button[:method] %></div>
+        <% end %>
       <% end %>
+
+      <% unless @nav_bar || @user.nil? %>
+        <%= button_to "Logout", logout_path, method: :delete %>
+      <% end %>
+    </div>
+    <div style="clear: both;"></div>
 
     <%= yield %>
   </body>

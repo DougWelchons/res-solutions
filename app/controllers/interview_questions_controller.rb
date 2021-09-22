@@ -4,9 +4,19 @@ class InterviewQuestionsController < ApplicationController
 
   def index
     if params[:report_id]
-      @interview_questions = Report.find(params[:report_id]).interview_questions
+      report = Report.find(params[:report_id])
+      @interview_questions = report.interview_questions
+      @nav_bar = {
+        logout: {title: "Logout", path: logout_path, method: :delete},
+        reports: {title: "Home", path: reports_path, method: :get},
+        report: {title: "Report", path: report_path(report), method: :get}
+      }
     else
       @interview_questions = InterviewQuestion.all
+      @nav_bar = {
+        logout: {title: "Logout", path: logout_path, method: :delete},
+        reports: {title: "Home", path: reports_path, method: :get}
+      }
     end
   end
 

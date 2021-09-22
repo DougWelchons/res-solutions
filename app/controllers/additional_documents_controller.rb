@@ -4,9 +4,20 @@ class AdditionalDocumentsController < ApplicationController
 
   def index
     if params[:report_id]
-      @additional_documents = Report.find(params[:report_id]).additional_documents
+      report = Report.find(params[:report_id])
+      @additional_documents = report.additional_documents
+
+      @nav_bar = {
+        logout: {title: "Logout", path: logout_path, method: :delete},
+        reports: {title: "Home", path: reports_path, method: :get},
+        report: {title: "Report", path: report_path(report), method: :get}
+      }
     else
       @additional_documents = AdditionalDocument.all
+      @nav_bar = {
+        logout: {title: "Logout", path: logout_path, method: :delete},
+        reports: {title: "Home", path: reports_path, method: :get}
+      }
     end
   end
 
