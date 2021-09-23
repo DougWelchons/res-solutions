@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'Additional Documents show page' do
   before :each do
-    @report = Report.create!(name: "Report 1", company: "Sample Company")
+    report = [{section_name: "P1 Ethics", sub_sections: []}]
+    Builder.build_report({name: "Report 1", company: "Sample Company"}, report)
+    @report = Report.first
     @section = @report.sections.first
     @user = User.create!(name: "Name1", email: "email@domain.com")
     @interview = @user.interviews.create!(date: Date.yesterday, time: "04:03", stakeholder: "Stakeholder1", attendees: "Name1", background: "Background1", interview: "interview1", report_summery: "Report Summery1", section: @section)

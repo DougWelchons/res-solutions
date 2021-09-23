@@ -2,7 +2,28 @@ require 'rails_helper'
 
 RSpec.describe 'Additional Documents index page' do
   before :each do
-    @report = Report.create!(name: "Report 1", company: "Sample Company")
+    report = [
+      {section_name: "P1 Ethics", sub_sections: [
+          {number: "1.1", name: "LEGAL COMPLIANCE", parts: {
+            p100: {pt1: 5, pt2: [1], pt3: [1, 5]},
+            p101: {pt1: 0, pt2: [], pt3: []},
+            p102: {pt1: 0, pt2: [], pt3: []}
+          }}]},
+      {section_name: "P2 Social", sub_sections: [
+          {number: "2.1", name: "HUMAN RIGHTS", parts: {
+            p100: {pt1: 4, pt2: [1, 2], pt3: [1, 2, 3]},
+            p101: {pt1: 0, pt2: [], pt3: []},
+            p102: {pt1: 0, pt2: [], pt3: []}
+          }}]},
+      {section_name: "P5 Enviroment", sub_sections: [
+          {number: "5.1", name: "ENVIRONMENTAL MANAGEMENT & MITIGATION", parts: {
+            p100: {pt1: 3, pt2: [1, 3], pt3: [1, 3]},
+            p101: {pt1: 0, pt2: [], pt3: []},
+            p102: {pt1: 0, pt2: [], pt3: []}
+          }}]}]
+
+    Builder.build_report({name: "Report 1", company: "Sample Company"}, report)
+    @report = Report.first
     @section1 = @report.sections.first
     @section2 = @report.sections.second
     @section3 = @report.sections.last

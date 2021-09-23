@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'Interview New page' do
   before :each do
-    @report = Report.create!(name: "Report 1", company: "Sample Company")
+    report = [{section_name: "P1 Ethics", sub_sections: []}]
+    Builder.build_report({name: "Report 1", company: "Sample Company"}, report)
+    @report = Report.first
     @section = @report.sections.first
     @user = User.create!(name: "Name1", email: "email@domain.com")
   end

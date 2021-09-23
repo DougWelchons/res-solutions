@@ -2,7 +2,16 @@ require 'rails_helper'
 
 RSpec.describe "Reports show page" do
   before :each do
-    @report = Report.create(name: "Report 1", company: "Sample Company")
+    report = [
+                {section_name: "P1 Ethics", sub_sections: []},
+                {section_name: "P2 Social", sub_sections: []},
+                {section_name: "P3 Indigenous", sub_sections: []},
+                {section_name: "P4 Labor", sub_sections: []},
+                {section_name: "P5 Enviroment", sub_sections: []}
+              ]
+
+    Builder.build_report({name: "Report 1", company: "Sample Company"}, report)
+    @report = Report.first
 
     @user = User.create!(name: "Name1", email: "email@domain.com")
   end
