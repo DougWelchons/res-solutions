@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Additional Documents index page' do
+RSpec.describe 'Interviews index page' do
   before :each do
     @report = Report.create!(name: "Report 1", company: "Sample Company")
     @report2 = Report.create!(name: "Report 2", company: "Sample Company")
