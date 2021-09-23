@@ -9,6 +9,5 @@ class Section < ApplicationRecord
   has_many :additional_documents, through: :parts
   has_many :interview_questions, through: :parts
 
-
   validates :name, presence: true, uniqueness: { scope: :report_id }
 end

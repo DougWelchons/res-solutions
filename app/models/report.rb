@@ -9,7 +9,6 @@ class Report < ApplicationRecord
   has_many :interviews, through: :sections
   has_many :interview_questions, through: :parts
 
-
   validates :name, presence: true, uniqueness:true
   validates :company, presence: true
 
