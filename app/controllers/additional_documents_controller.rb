@@ -45,6 +45,7 @@ class AdditionalDocumentsController < ApplicationController
       redirect_to section_path(@additional_document.section)
     else
       redirect_to edit_part_additional_document_path(@part, @additional_document)
+      # redirect_back(fallback_location: root_path)
     end
   end
 

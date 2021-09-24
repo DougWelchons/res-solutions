@@ -40,12 +40,11 @@
         <% sub_section.all_related_parts.each do |rp| %>
           <tr class="cell">
             <div id="related_part_<%= rp.id %>">
-              <% [rp.pt1_id, rp.pt2_id, rp.pt3_id].each do |part_id| %>
+              <% [rp.pt1, rp.pt2, rp.pt3].each do |part| %>
                 <td class="cell">
                   <div>
-                    <% unless part_id.nil? %>
-                    <div id="part-<%=part_id%>">
-                        <% part = Part.find(part_id) %>
+                    <% unless part.nil? %>
+                    <div id="part-<%=part.id%>">
                         <h5>Section: <%= part.section_number %></h5>
                         <p>Assessor: <br>
                           <span class="final_assessment">

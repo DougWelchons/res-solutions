@@ -1,9 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe 'Additional Documents index page' do
+RSpec.describe 'Interviews index page' do
   before :each do
-    @report = Report.create!(name: "Report 1", company: "Sample Company")
-    @report2 = Report.create!(name: "Report 2", company: "Sample Company")
+    report = [
+                {section_name: "P1 Ethics", sub_sections: []},
+                {section_name: "P2 Social", sub_sections: []},
+                {section_name: "P5 Enviroment", sub_sections: []}
+              ]
+
+    Builder.build_report({name: "Report 1", company: "Sample Company"}, report)
+    Builder.build_report({name: "Report 2", company: "Sample Company"}, report)
+    @report = Report.first
+    @report2 = Report.second
     @section1 = @report.sections.first
     @section2 = @report.sections.second
     @section3 = @report.sections.last

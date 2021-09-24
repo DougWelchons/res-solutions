@@ -38,8 +38,7 @@ class InterviewsController < ApplicationController
     }
   end
 
-  def new
-  end
+  def new; end
 
   def create
     interview = @user.interviews.new(interview_params)

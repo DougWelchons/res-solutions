@@ -2,9 +2,13 @@ require 'rails_helper'
 
 RSpec.describe "Reports index page" do
   before :each do
-    @report1 = Report.create!(name: "Report 1", company: "Sample Company")
-    @report2 = Report.create!(name: "Report 2", company: "Sample Company", status: 5)
-    @report3 = Report.create!(name: "Report 3", company: "Sample Company")
+    report = []
+    Builder.build_report({name: "Report 1", company: "Sample Company"}, report)
+    Builder.build_report({name: "Report 2", company: "Sample Company", status: 5}, report)
+    Builder.build_report({name: "Report 3", company: "Sample Company"}, report)
+    @report1 = Report.first
+    @report2 = Report.second
+    @report3 = Report.third
     @user = User.create!(name: "Name1", email: "email@domain.com")
   end
 
