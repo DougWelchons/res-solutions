@@ -60,14 +60,6 @@ RSpec.describe "Reports show page" do
         expect(current_path).to eq(report_additional_documents_path(@report))
       end
 
-      xit "has a link to the Field Reviews page" do
-        visit report_path(@report)
-
-        within(".additional_info") do
-          expect(page).to have_link("Field Reviews")
-        end
-      end
-
       it "has a link to the Interview Questions page" do
         visit report_path(@report)
 
@@ -102,6 +94,42 @@ RSpec.describe "Reports show page" do
         end
 
         expect(current_path).to eq(report_interviews_path(@report))
+      end
+
+      it "has a link to the  Field Interview Questions page" do
+        visit report_path(@report)
+
+        within(".additional_info") do
+          expect(page).to have_link("Field Interview Questions")
+        end
+      end
+
+      it "redirects to the field interview questions page" do
+        visit report_path(@report)
+
+        within(".additional_info") do
+          click_link("Field Interview Questions")
+        end
+
+        expect(current_path).to eq(report_field_interview_questions_path(@report))
+      end
+
+      it "has a link to the Field Interviews page" do
+        visit report_path(@report)
+
+        within(".additional_info") do
+          expect(page).to have_link("Field Interviews")
+        end
+      end
+
+      it "redirects to the interview page" do
+        visit report_path(@report)
+
+        within(".additional_info") do
+          click_link("Field Interviews")
+        end
+
+        expect(current_path).to eq(report_field_interviews_path(@report))
       end
 
       it "has a log-out button" do

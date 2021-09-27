@@ -13,11 +13,14 @@ Rails.application.routes.draw do
   resources 'reports', only: [:index, :show, :new] do
     resources 'additional_documents', only: [:index]
     resources 'interview_questions', only: [:index]
+    resources 'field_interview_questions', only: [:index]
     resources 'interviews', only: [:index]
+    resources 'field_interviews', only: [:index]
   end
 
   resources 'sections', only: [:show] do
     resources 'interviews', only: [:index, :new, :create, :edit, :update]
+    resources 'field_interviews', only: [:index, :new, :create, :edit, :update]
   end
 
   resources :part, only: [] do
@@ -27,7 +30,9 @@ Rails.application.routes.draw do
     put "/first", to: "parts#first_update"
     resources 'additional_documents', only: [:index, :new, :create, :edit, :update]
     resources 'interview_questions', only: [:index, :new, :create, :edit, :update]
+    resources 'field_interview_questions', only: [:index, :new, :create, :edit, :update]
   end
 
   resources "interviews", only: [:index, :show]
+  resources "field_interviews", only: [:index, :show]
 end

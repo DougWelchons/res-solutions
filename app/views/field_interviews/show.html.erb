@@ -1,0 +1,13 @@
+<div class="field_interview">
+  <h4>Section: <%=@field_interview.section.name%></h4>
+  <p>
+    Date: <%=@field_interview.date%> Time: <%=@field_interview.time%><br>
+    Stakeholder: <%=@field_interview.stakeholder%><br>
+    Attendees: <%=@field_interview.attendees%><br>
+    Backgrond: <%=@field_interview.background%><br>
+    Interview: <%=@field_interview.interview%><br>
+    Report Summery: <%=@field_interview.report_summery%><br>
+    Assessor: <%=@field_interview.user.name%>
+    <%= link_to "Edit Interview", edit_section_field_interview_path(@field_interview.section, @field_interview) %>
+  </p>
+</div>
