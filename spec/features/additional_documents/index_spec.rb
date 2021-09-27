@@ -32,7 +32,7 @@ RSpec.describe 'Additional Documents index page' do
     @part3 = @section1.parts.fifth
     @part4 = @section3.parts.third
     @part5 = @section3.parts.fourth
-    @user = User.create!(name: "Name1", email: "email@domain.com")
+    @user = create_user
     @additional_document1 = @part1.additional_documents.create!(document: "Doc1", notes: "Lots'O'Notes1", user: @user)
     @additional_document2 = @part2.additional_documents.create!(document: "Doc2", notes: "Lots'O'Notes2", user: @user)
     @additional_document3 = @part1.additional_documents.create!(document: "Doc3", notes: "Lots'O'Notes3", user: @user)
@@ -45,9 +45,7 @@ RSpec.describe 'Additional Documents index page' do
   describe "Happy path" do
     describe "As a logged in user when I visit the page it" do
       before :each do
-        visit root_path
-        fill_in :email, with: @user.email
-        click_button :login
+        login_user(@user)
       end
 
       # it "lists all of a reports additional documents sorted by its associated part number" do

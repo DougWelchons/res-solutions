@@ -15,15 +15,13 @@ RSpec.describe "Part edit pages" do
       @report = Report.first
       @section = @report.sections.first
       @part = @section.parts.first
-      @user = User.create!(name: "Name1", email: "email@domain.com")
+      @user = create_user
     end
 
     describe "Happy Path" do
       describe "As a logged in user when I visit the page it" do
         before :each do
-          visit root_path
-          fill_in :email, with: @user.email
-          click_button :login
+          login_user(@user)
         end
 
         it "has a field to add a final assessment" do
@@ -97,15 +95,13 @@ RSpec.describe "Part edit pages" do
       @report = Report.first
       @section = @report.sections.first
       @part = @section.parts.first
-      @user = User.create!(name: "Name1", email: "email@domain.com")
+      @user = create_user
     end
 
     describe "Happy Path" do
       describe "As a logged in user when i visit the page it" do
         before :each do
-          visit root_path
-          fill_in :email, with: @user.email
-          click_button :login
+          login_user(@user)
         end
 
         it "has a field to add the first assessment" do

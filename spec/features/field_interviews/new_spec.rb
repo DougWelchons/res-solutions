@@ -6,15 +6,13 @@ RSpec.describe 'Field Interview New page' do
     Builder.build_report({name: "Report 1", company: "Sample Company"}, report)
     @report = Report.first
     @section = @report.sections.first
-    @user = User.create!(name: "Name1", email: "email@domain.com")
+    @user = create_user
   end
 
   describe "Happy path" do
     describe "As a logged in user when I visit the page it" do
       before :each do
-        visit root_path
-        fill_in :email, with: @user.email
-        click_button :login
+        login_user(@user)
       end
 
       it "shows all interview fields" do

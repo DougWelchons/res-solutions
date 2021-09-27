@@ -9,20 +9,18 @@ RSpec.describe "section show page" do
             p101: {pt1: 0, pt2: [], pt3: []},
             p102: {pt1: 0, pt2: [], pt3: []}
           }}]}]
-          
+
     Builder.build_report({name: "Report 1", company: "Sample Company"}, report)
     @report = Report.first
     @section = @report.sections.first
     @part = @section.parts.first
-    @user = User.create!(name: "Name1", email: "email@domain.com")
+    @user = create_user
   end
 
   describe "Happy Path" do
     describe "as a logged in user, when I visit the section show page it" do
       before :each do
-        visit root_path
-        fill_in :email, with: @user.email
-        click_button :login
+        login_user(@user)
       end
 
       it "shows the section name at the top of the page" do

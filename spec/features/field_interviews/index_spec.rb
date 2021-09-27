@@ -15,7 +15,7 @@ RSpec.describe 'Field Interviews index page' do
     @section1 = @report.sections.first
     @section2 = @report.sections.second
     @section3 = @report.sections.last
-    @user = User.create!(name: "Name1", email: "email@domain.com")
+    @user = create_user
     @field_interview1 = @user.field_interviews.create!(date: Date.yesterday, time: "04:15", stakeholder: "Stakeholder1", background: "Background1", interview: "interview1", report_summery: "Report Summery1", section: @section1)
     @field_interview2 = @user.field_interviews.create!(date: Date.yesterday, time: "04:20", stakeholder: "Stakeholder2", background: "Background2", interview: "interview2", report_summery: "Report Summery2", section: @section2)
     @field_interview3 = @user.field_interviews.create!(date: Date.yesterday, time: "15:15", stakeholder: "Stakeholder3", background: "Background3", interview: "interview3", report_summery: "Report Summery3", section: @section1)
@@ -27,9 +27,7 @@ RSpec.describe 'Field Interviews index page' do
   describe "Happy path" do
     describe "As a logged in user when I visit the page it" do
       before :each do
-        visit root_path
-        fill_in :email, with: @user.email
-        click_button :login
+        login_user(@user)
       end
 
       # it "lists all of a reports interviews sorted by its associated section" do

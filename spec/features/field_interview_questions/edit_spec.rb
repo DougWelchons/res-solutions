@@ -14,16 +14,14 @@ RSpec.describe 'Field Interview Question Edit page' do
     @report = Report.first
     @section = @report.sections.first
     @part = @section.parts.first
-    @user = User.create!(name: "Name1", email: "email@domain.com")
+    @user = create_user
     @field_interview_question = @part.field_interview_questions.create!(question: "My Question", notes: "Lots'O'Notes", user: @user)
   end
 
   describe "Happy path" do
     describe "As a logged in user when I visit the page it" do
       before :each do
-        visit root_path
-        fill_in :email, with: @user.email
-        click_button :login
+        login_user(@user)
       end
 
       it "shows a field to add the question and notes" do

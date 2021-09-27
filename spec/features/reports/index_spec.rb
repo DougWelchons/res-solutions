@@ -9,15 +9,13 @@ RSpec.describe "Reports index page" do
     @report1 = Report.first
     @report2 = Report.second
     @report3 = Report.third
-    @user = User.create!(name: "Name1", email: "email@domain.com")
+    @user = create_user
   end
 
   describe "Happy Path" do
     describe "when a logged in user visits the reports index page it" do
       before :each do
-        visit root_path
-        fill_in :email, with: @user.email
-        click_button :login
+        login_user(@user)
       end
 
       it "shows all of the current reports" do

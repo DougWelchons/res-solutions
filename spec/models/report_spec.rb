@@ -11,6 +11,8 @@ RSpec.describe Report, type: :model do
     it { should have_many(:additional_documents).through(:parts) }
     it { should have_many(:interviews).through(:sections) }
     it { should have_many(:interview_questions).through(:parts) }
+    it { should have_many(:field_interviews).through(:sections) }
+    it { should have_many(:field_interview_questions).through(:parts) }
   end
 
   describe "validations" do
@@ -23,9 +25,5 @@ RSpec.describe Report, type: :model do
       report = Report.new(name: "report 1", company: "Company")
       expect(report.prep?).to eq(true)
     end
-  end
-
-  describe "Instance Methods" do
-    it "automatically creates report sections"
   end
 end

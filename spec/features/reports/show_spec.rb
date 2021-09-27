@@ -13,15 +13,13 @@ RSpec.describe "Reports show page" do
     Builder.build_report({name: "Report 1", company: "Sample Company"}, report)
     @report = Report.first
 
-    @user = User.create!(name: "Name1", email: "email@domain.com")
+    @user = create_user
   end
 
   describe "Happy Path" do
     describe "when a logged in user visits the report show page it" do
       before :each do
-        visit root_path
-        fill_in :email, with: @user.email
-        click_button :login
+        login_user(@user)
       end
 
       xit "has a button to 'close' the report" do

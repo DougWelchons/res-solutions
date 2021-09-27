@@ -9,7 +9,7 @@ class Section < ApplicationRecord
   has_many :related_pt3s, through: :parts
   has_many :additional_documents, through: :parts
   has_many :interview_questions, through: :parts
-  has_many :Field_interview_questions, through: :parts
+  has_many :field_interview_questions, through: :parts
 
   validates :name, presence: true, uniqueness: { scope: :report_id }
 end
