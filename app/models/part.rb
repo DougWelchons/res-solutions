@@ -3,6 +3,7 @@ class Part < ApplicationRecord
   belongs_to :sub_section
   has_many :additional_documents
   has_many :interview_questions
+  has_many :field_interview_questions
   has_one :section, through: :sub_section
   has_one :report, through: :section
   has_one :related_pt1, class_name: 'RelatedPart', foreign_key: 'pt1_id'

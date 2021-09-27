@@ -24,6 +24,10 @@
     <%= link_to "Interviews", section_interviews_path(@section) %>
     <%= link_to "New Interview", new_section_interview_path(@section) %>
   </div>
+  <div class="field_interviews">
+    <%= link_to "Field Interviews", section_field_interviews_path(@section) %>
+    <%= link_to "New Field Interview", new_section_field_interview_path(@section) %>
+  </div>
 </div>
 
 <div class="sub_sections">
@@ -79,8 +83,16 @@
                                 </div>
                               <% end %>
                             </div>
-                            <div class="field_review">
-                              Field Review Questions:
+                            <div class="field_interview_questions">
+                              <%= button_to "Add", new_part_field_interview_question_path(part), method: :get %>
+                              Field Interview Questions:
+                              <% part.field_interview_questions.each do |question| %>
+                                <div id="field_interview_question-<%=question.id%>">
+                                  <%= button_to "Edit", edit_part_field_interview_question_path(part, question), method: :get %> Question:
+                                  <%= question.question %> <br>
+                                  Notes: <%= question.notes %>
+                                </div>
+                              <% end %>
                             </div>
                             <div class="notes">
                               Notes:

@@ -1,0 +1,13 @@
+<div class="field_interviews">
+  <% @field_interviews.each do |field_interview| %>
+    <div id="field_interview-<%=field_interview.id%>">
+      <p>
+        Date: <%=field_interview.date%>, Time: <%= field_interview.time %><br>
+        Stakeholder: <%=field_interview.stakeholder%><br>
+        Report Summery:<br>
+        <%=field_interview.report_summery%><br>
+        <%= link_to "View Full Interview", field_interview_path(field_interview)%>
+      </p>
+    </div>
+  <% end %>
+</div>
