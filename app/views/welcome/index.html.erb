@@ -9,6 +9,7 @@
 
   <%= form_with url: "/temp_session_route", method: :get, local: true do |form| %>
     <%= form.text_field :email %>
+    <%= form.password_field :password %>
     <%= form.submit :login %>
   <% end %>
 </div>

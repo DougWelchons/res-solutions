@@ -14,7 +14,7 @@ RSpec.describe "nav-bar" do
     @report = Report.first
     @section = @report.sections.first
     @part = @section.parts.first
-    @user = User.create!(name: "Name1", email: "email@domain.com")
+    @user = create_user
     @additional_document = @part.additional_documents.create!(document: "Doc1", notes: "Lots'O'Notes", user: @user)
     @interview_question = @part.interview_questions.create!(question: "Doc1", notes: "Lots'O'Notes", user: @user)
     @interview = Interview.create!(user: @user, section: @section)
@@ -35,9 +35,7 @@ RSpec.describe "nav-bar" do
 
   describe "Logged in" do
     before :each do
-      visit root_path
-      fill_in :email, with: @user.email
-      click_button :login
+      login_user(@user)
     end
 
     describe "Reports" do
