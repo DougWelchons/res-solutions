@@ -87,14 +87,16 @@
                           </td>
                         </tr>
                         <tr>
-                          <td class="button_holder" style="vertical-align: top; padding: 5px;">
-                            <%= button_to "Edit", part_final_edit_path(part), method: "get" %>
-                          </td>
+                          <div class="final_assessment">
+                            <td class="button_holder" style="vertical-align: top; padding: 5px;">
+                              <%= button_to "Edit", part_final_edit_path(part), method: "get" %>
+                            </td>
 
-                          <td style="vertical-align: top; padding: 5px;">
-                            <span style="font-weight: bold;">Final Assessment:</span> <%= part.final_assessment %><br><br>
-                            <span style="font-weight: bold;">Score:</span> <%= part.score %><br><br>
-                          </td>
+                            <td style="vertical-align: top; padding: 5px;">
+                              <span style="font-weight: bold;">Final Assessment:</span> <%= part.final_assessment %><br><br>
+                              <span style="font-weight: bold;">Score:</span> <%= part.score %><br><br>
+                            </td>
+                          </div>
                         </tr>
                         <tr>
                           <div class="first_assessment">
