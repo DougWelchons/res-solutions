@@ -2,15 +2,17 @@
 </div>
 
 <div class='reports'>
-  <div class='open'>
+  <div class='open' style="float: left; width: 350px;">
+    <h3>Open Reports:</h3>
     <% @reports[:open].each do |report| %>
-      <%= link_to "#{report.name} #{report.company} #{report.id}", report_path(report) %>
+      <%= link_to "#{report.name} #{report.company} #{report.id}", report_path(report) %> Status: <%=report.status.gsub('_', ' ').capitalize %><br>
     <% end %>
   </div>
 
-  <div class='closed'>
+  <div class='closed' style="float: left; width: 350px;">
+    <h3>Closed Reports:</h3>
     <% @reports[:closed].each do |report| %>
-      <%= link_to "#{report.name} #{report.company} #{report.id} ", report_path(report) %>
+      <%= link_to "#{report.name} #{report.company} #{report.id} ", report_path(report) %> Status: <%=report.status.gsub('_', ' ').capitalize %><br>
     <% end %>
   </div>
 </div>

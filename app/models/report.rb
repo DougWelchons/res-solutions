@@ -15,4 +15,9 @@ class Report < ApplicationRecord
   validates :company, presence: true
 
   enum status: [:prep, :kick_off, :document_review, :field_review, :reporting, :closed]
+
+
+  # def self.all_by_status
+  # {"Prep" => Report.prep, "Kick off" => Report.kick_off, "Document review" => Report.document_review, "Field review" => Report.field_review, "Reporting" => Report.reporting, "Closed" => Report.closed}
+  # end
 end
