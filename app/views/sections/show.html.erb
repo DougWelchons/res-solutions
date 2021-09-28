@@ -28,6 +28,12 @@
     <%= link_to "Field Interviews", section_field_interviews_path(@section) %>
     <%= link_to "New Field Interview", new_section_field_interview_path(@section) %>
   </div>
+  <div class="page-nav">
+    Subsections:
+    <% @section.sub_sections.each do |subsection| %>
+      <br><%= link_to "#{subsection.section_number} - #{subsection.name}", anchor: "sub_section_#{subsection.id}" %>
+    <% end %>
+  </div>
 </div>
 
 <div class="sub_sections">
