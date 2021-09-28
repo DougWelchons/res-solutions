@@ -1,13 +1,13 @@
 <div class="interview">
   <h4>Section: <%=@interview.section.name%></h4>
   <p>
-    Date: <%=@interview.date%> Time: <%=@interview.time%><br>
-    Stakeholder: <%=@interview.stakeholder%><br>
-    Attendees: <%=@interview.attendees%><br>
-    Backgrond: <%=@interview.background%><br>
-    Interview: <%=@interview.interview%><br>
-    Report Summery: <%=@interview.report_summery%><br>
-    Assessor: <%=@interview.user.name%>
+    Date: <%=@interview.date%> Time: <%=@interview.time%><br><br>
+    <span style="font-weight: bold;">Stakeholder:</span> <%=@interview.stakeholder%><br><br>
+    <span style="font-weight: bold;">Attendees:</span> <%=@interview.attendees%><br><br>
+    <span style="font-weight: bold;">Backgrond:</span> <%=@interview.background%><br><br>
+    <span style="font-weight: bold;">Interview:</span> <%=@interview.interview%><br><br>
+    <span style="font-weight: bold;">Report Summery:</span> <%=@interview.report_summery%><br><br>
+    <span style="font-weight: bold;">Assessor:</span> <%=@interview.user.name%><br><br>
     <%= link_to "Edit Interview", edit_section_interview_path(@interview.section, @interview) %>
   </p>
 </div>
