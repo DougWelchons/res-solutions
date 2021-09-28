@@ -41,3 +41,5 @@ yarn-debug.log*
 coverage
 
 .DS_Store
+
+section_show_page.md
