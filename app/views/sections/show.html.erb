@@ -10,6 +10,7 @@
 
 .cell {
   border: 3px black solid;
+  width: 33%;
   /* border-color: black; */
 }
 
@@ -56,52 +57,52 @@
                     <% unless part.nil? %>
                     <div id="part-<%=part.id%>">
                         <h5>Section: <%= part.section_number %></h5>
-                        <p>Assessor: <br>
+                        <p><span style="font-weight: bold;">Assessor:</span> <br>
                           <span class="final_assessment">
-                            <%= button_to "Edit", part_final_edit_path(part), method: "get" %> Final Assessment: <%= part.final_assessment %><br>
-                            Score: <%= part.score %><br><br>
+                            <%= button_to "Edit", part_final_edit_path(part), method: "get" %> <span style="font-weight: bold;">Final Assessment:</span> <%= part.final_assessment %><br>
+                            <span style="font-weight: bold;">Score:</span> <%= part.score %><br><br>
                           </span>
                           <div class="first_assessment">
-                            <%= button_to "Edit", part_first_edit_path(part), method: "get" %> First Assessment: <%= part.first_assessment %>
+                            <%= button_to "Edit", part_first_edit_path(part), method: "get" %> <span style="font-weight: bold;">First Assessment:</span> <%= part.first_assessment %>
                           </div>
                         </p>
                         <div>
                           <p>
                             <div class="additional_documents">
                               <%= button_to "Add", new_part_additional_document_path(part), method: :get %>
-                              Additional Documents:
+                              <span style="font-weight: bold;">Additional Documents:</span>
                               <% part.additional_documents.each do |document| %>
                                 <div id="additional_document-<%=document.id%>">
-                                  <%= button_to "Edit", edit_part_additional_document_path(part, document), method: :get %> Document:
+                                  <%= button_to "Edit", edit_part_additional_document_path(part, document), method: :get %> <span style="font-weight: bold;">Document:</span>
                                   <%= document.document %> <br>
-                                  Notes: <%= document.notes %>
+                                  <span style="font-weight: bold;">Notes:</span> <%= document.notes %>
                                 </div>
                               <% end %>
                             </div>
                             <div class="interview_questions">
                               <%= button_to "Add", new_part_interview_question_path(part), method: :get %>
-                              Interview Questions:
+                              <span style="font-weight: bold;">Interview Questions:</span>
                               <% part.interview_questions.each do |question| %>
                                 <div id="interview_question-<%=question.id%>">
-                                  <%= button_to "Edit", edit_part_interview_question_path(part, question), method: :get %> Question:
+                                  <%= button_to "Edit", edit_part_interview_question_path(part, question), method: :get %> <span style="font-weight: bold;">Question:</span>
                                   <%= question.question %> <br>
-                                  Notes: <%= question.notes %>
+                                  <span style="font-weight: bold;">Notes:</span> <%= question.notes %>
                                 </div>
                               <% end %>
                             </div>
                             <div class="field_interview_questions">
                               <%= button_to "Add", new_part_field_interview_question_path(part), method: :get %>
-                              Field Interview Questions:
+                              <span style="font-weight: bold;">Field Interview Questions:</span>
                               <% part.field_interview_questions.each do |question| %>
                                 <div id="field_interview_question-<%=question.id%>">
-                                  <%= button_to "Edit", edit_part_field_interview_question_path(part, question), method: :get %> Question:
+                                  <%= button_to "Edit", edit_part_field_interview_question_path(part, question), method: :get %> <span style="font-weight: bold;">Question:</span>
                                   <%= question.question %> <br>
-                                  Notes: <%= question.notes %>
+                                  <span style="font-weight: bold;">Notes:</span> <%= question.notes %>
                                 </div>
                               <% end %>
                             </div>
                             <div class="notes">
-                              Notes:
+                              <span style="font-weight: bold;">Notes:</span>
                             </div>
                           </p>
                         </div>
