@@ -2,15 +2,24 @@
 .part {
   width: 33%;
 }
+
 .table {
   width: 95%;
   border: 3px black solid;
-  /* border-color: black; */
+}
+
+.table_two {
+  width: 99%;
+}
+
+.button_holder {
+  width: 10px;
 }
 
 .cell {
   border: 3px black solid;
   width: 33%;
+  vertical-align: top;
   /* border-color: black; */
 }
 
@@ -56,56 +65,137 @@
                   <div>
                     <% unless part.nil? %>
                     <div id="part-<%=part.id%>">
-                        <h5>Section: <%= part.section_number %></h5>
-                        <p><span style="font-weight: bold;">Assessor:</span> <br>
-                          <span class="final_assessment">
-                            <%= button_to "Edit", part_final_edit_path(part), method: "get" %> <span style="font-weight: bold;">Final Assessment:</span> <%= part.final_assessment %><br>
+                      <table class="table_two">
+                        <tr>
+                          <th class="button_holder"></th>
+                          <th></th>
+                        </tr>
+                        <tr>
+                          <td class="button_holder" style="vertical-align: top; padding: 5px;">
+                          </td>
+
+                          <td style="vertical-align: top; padding: 5px;">
+                            <span style="font-weight: bold;">Section: <%= part.section_number %></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="button_holder" style="vertical-align: top; padding: 5px;">
+                          </td>
+
+                          <td style="vertical-align: top; padding: 5px;">
+                            <span style="font-weight: bold;">Assessor:</span> <br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="button_holder" style="vertical-align: top; padding: 5px;">
+                            <%= button_to "Edit", part_final_edit_path(part), method: "get" %>
+                          </td>
+
+                          <td style="vertical-align: top; padding: 5px;">
+                            <span style="font-weight: bold;">Final Assessment:</span> <%= part.final_assessment %><br><br>
                             <span style="font-weight: bold;">Score:</span> <%= part.score %><br><br>
-                          </span>
+                          </td>
+                        </tr>
+                        <tr>
                           <div class="first_assessment">
-                            <%= button_to "Edit", part_first_edit_path(part), method: "get" %> <span style="font-weight: bold;">First Assessment:</span> <%= part.first_assessment %>
+                            <td class="button_holder" style="vertical-align: top; padding: 5px;">
+                              <%= button_to "Edit", part_first_edit_path(part), method: "get" %>
+                            </td>
+
+                            <td style="vertical-align: top; padding: 5px;">
+                                <span style="font-weight: bold;">First Assessment:</span> <%= part.first_assessment %><br>
+                            </td>
                           </div>
-                        </p>
-                        <div>
-                          <p>
-                            <div class="additional_documents">
+                        </tr>
+                        <div class="additional_documents">
+                          <tr>
+                            <td class="button_holder" style="vertical-align: top; border-bottom: 3px solid; padding: 5px;">
                               <%= button_to "Add", new_part_additional_document_path(part), method: :get %>
+                            </td>
+
+                            <td style="vertical-align: bottom; border-bottom: 3px solid; padding: 5px, 5px, 5px;">
                               <span style="font-weight: bold;">Additional Documents:</span>
-                              <% part.additional_documents.each do |document| %>
-                                <div id="additional_document-<%=document.id%>">
-                                  <%= button_to "Edit", edit_part_additional_document_path(part, document), method: :get %> <span style="font-weight: bold;">Document:</span>
-                                  <%= document.document %> <br>
+                            </td>
+                          </tr>
+                          <% part.additional_documents.each do |document| %>
+                            <div id="additional_document-<%=document.id%>">
+                              <tr>
+                                <td class="button_holder" style="vertical-align: top; border-bottom: 2px solid; padding: 5px;">
+                                  <%= button_to "Edit", edit_part_additional_document_path(part, document), method: :get %>
+                                </td>
+
+                                <td style="vertical-align: top; border-bottom: 2px solid; padding: 5px;">
+                                  <span style="font-weight: bold;">Document:</span>
+                                  <%= document.document %> <br><br>
                                   <span style="font-weight: bold;">Notes:</span> <%= document.notes %>
-                                </div>
-                              <% end %>
+                                </td>
+                              </tr>
                             </div>
-                            <div class="interview_questions">
-                              <%= button_to "Add", new_part_interview_question_path(part), method: :get %>
-                              <span style="font-weight: bold;">Interview Questions:</span>
-                              <% part.interview_questions.each do |question| %>
-                                <div id="interview_question-<%=question.id%>">
-                                  <%= button_to "Edit", edit_part_interview_question_path(part, question), method: :get %> <span style="font-weight: bold;">Question:</span>
-                                  <%= question.question %> <br>
-                                  <span style="font-weight: bold;">Notes:</span> <%= question.notes %>
-                                </div>
-                              <% end %>
-                            </div>
-                            <div class="field_interview_questions">
-                              <%= button_to "Add", new_part_field_interview_question_path(part), method: :get %>
-                              <span style="font-weight: bold;">Field Interview Questions:</span>
-                              <% part.field_interview_questions.each do |question| %>
-                                <div id="field_interview_question-<%=question.id%>">
-                                  <%= button_to "Edit", edit_part_field_interview_question_path(part, question), method: :get %> <span style="font-weight: bold;">Question:</span>
-                                  <%= question.question %> <br>
-                                  <span style="font-weight: bold;">Notes:</span> <%= question.notes %>
-                                </div>
-                              <% end %>
-                            </div>
-                            <div class="notes">
-                              <span style="font-weight: bold;">Notes:</span>
-                            </div>
-                          </p>
+                          <% end %>
                         </div>
+                        <div class="interview_questions">
+                          <tr>
+                            <td class="button_holder" style="vertical-align: top; border-bottom: 3px solid; padding: 5px;">
+                              <%= button_to "Add", new_part_interview_question_path(part), method: :get %>
+                            </td>
+
+                            <td style="vertical-align: bottom; border-bottom: 3px solid; padding: 5px, 5px, 5px;">
+                              <span style="font-weight: bold;">Interview Questions:</span>
+                            </td>
+                          </tr>
+                          <% part.interview_questions.each do |question| %>
+                            <div id="interview_question-<%=question.id%>">
+                              <tr>
+                                <td class="button_holder" style="vertical-align: top; border-bottom: 2px solid; padding: 5px;">
+                                  <%= button_to "Edit", edit_part_interview_question_path(part, question), method: :get %>
+                                </td>
+
+                                <td style="vertical-align: top; border-bottom: 2px solid; padding: 5px;">
+                                  <span style="font-weight: bold;">Question:</span>
+                                  <%= question.question %> <br><br>
+                                  <span style="font-weight: bold;">Notes:</span> <%= question.notes %>
+                                </td>
+                              </tr>
+                            </div>
+                          <% end %>
+                        </div>
+                        <div class="field_interview_questions">
+                          <tr>
+                            <td class="button_holder" style="vertical-align: top; border-bottom: 3px solid; padding: 5px;">
+                              <%= button_to "Add", new_part_field_interview_question_path(part), method: :get %>
+                            </td>
+
+                            <td style="vertical-align: bottom; border-bottom: 3px solid; padding: 5px, 5px, 5px;">
+                              <span style="font-weight: bold;">Field Interview Questions:</span>
+                            </td>
+                          </tr>
+                          <% part.field_interview_questions.each do |question| %>
+                            <div id="field_interview_question-<%=question.id%>">
+                              <tr>
+                                <td class="button_holder" style="vertical-align: top; border-bottom: 2px solid; padding: 5px;">
+                                  <%= button_to "Edit", edit_part_field_interview_question_path(part, question), method: :get %>
+                                </td>
+
+                                <td style="vertical-align: top; border-bottom: 2px solid; padding: 5px;">
+                                  <span style="font-weight: bold;">Question:</span>
+                                  <%= question.question %> <br><br>
+                                  <span style="font-weight: bold;">Notes:</span> <%= question.notes %>
+                                </td>
+                              </tr>
+                            </div>
+                          <% end %>
+                        </div>
+                        <div class="notes">
+                          <tr>
+                            <td class="button_holder" style="vertical-align: top; padding: 5px;">
+                            </td>
+
+                            <td style="vertical-align: bottom; border-bottom: 3px solid; padding: 5px, 5px, 5px;">
+                              <span style="font-weight: bold;">Notes:</span>
+                            </td>
+                          </tr>
+                        </div>
+                        </table>
                       </div>
                     <% end %>
                   </div>
